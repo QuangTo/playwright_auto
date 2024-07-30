@@ -1,3 +1,6 @@
+/**
+ * need add some log table and group
+ */
 export class Logger {
   static logError(message: string): void {
     console.error(`[ERROR] ${message}`);

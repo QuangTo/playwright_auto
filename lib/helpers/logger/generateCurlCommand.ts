@@ -1,3 +1,4 @@
+// throw curl for debbuging
 export function generateCurlCommand(
   method: string,
   url: string,

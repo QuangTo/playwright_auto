@@ -3,7 +3,6 @@ import { createSchema } from "genson-js";
 import { Logger } from "../logger/Logger";
 
 // create json schema on local based on path.
-
 export async function createJsonSchema(
   name: string,
   path: string,
