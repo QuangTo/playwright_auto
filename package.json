@@ -1,0 +1,43 @@
+{
+  "name": "auto_demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:qa": "NODE_ENV=qa npx playwright test --reporter=list",
+    "test:run-ci-api": "NODE_ENV=prod npx playwright test ./tests/api/**.spec.ts --reporter=list",
+    "test:run-api-RP": "npx playwright test ./tests/api/**/*.spec.ts --config=playwright.config.ts",
+    "test:dev": "NODE_ENV=dev npx playwright test ./tests/**/**/***/*.spec.ts --config=playwright.config.ts",
+    "test:dev-api": "NODE_ENV=dev npx playwright test ./tests/api/**/*.spec.ts --config=playwright.config.ts",
+    "test:dev-ui": "NODE_ENV=dev npx playwright test ./tests/e2e/***.spec.ts --ui",
+    "test:regression": "NODE_ENV=dev npx playwright test ./tests/**/**/***/*.spec.ts --config=playwright.config.ts --grep @regression"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/tvquangcs/auto_demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/tvquangcs/auto_demo/issues"
+  },
+  "homepage": "https://gitlab.com/tvquangcs/auto_demo#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.45.3",
+    "@reportportal/agent-js-playwright": "^5.1.8",
+    "@types/node": "^20.12.7",
+    "ajv": "^8.13.0"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "axios": "^1.6.8",
+    "dotenv": "^16.4.5",
+    "fast-xml-parser": "^4.4.0",
+    "genson-js": "^0.0.8",
+    "js-yaml": "^4.1.0",
+    "pdf2json": "^3.1.3",
+    "playwright": "^1.43.1",
+    "xml2js": "^0.6.2"
+  }
+}

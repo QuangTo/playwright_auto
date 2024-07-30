@@ -1,0 +1,69 @@
+{
+  "$id": "root",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "default": 1,
+      "examples": [1]
+    },
+    "category": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "default": 1,
+          "examples": [1]
+        },
+        "name": {
+          "type": "string",
+          "default": "string",
+          "examples": ["string"]
+        }
+      },
+      "required": ["id", "name"],
+      "additionalProperties": false
+    },
+    "name": {
+      "type": "string",
+      "default": "doggie",
+      "examples": ["doggie"]
+    },
+    "photoUrls": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "default": "string",
+        "examples": ["string"]
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "default": 1,
+            "examples": [1]
+          },
+          "name": {
+            "type": "string",
+            "default": "string",
+            "examples": ["string"]
+          }
+        },
+        "required": ["id", "name"],
+        "additionalProperties": false
+      }
+    },
+    "status": {
+      "type": "string",
+      "default": "available",
+      "examples": ["available"]
+    }
+  },
+  "required": ["id", "category", "name", "photoUrls", "tags", "status"],
+  "additionalProperties": false
+}
