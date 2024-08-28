@@ -1,6 +1,7 @@
 # Playwright Automation
+Playwright(typescript) framework to cover API & UI scenario. Also present itself reporter, allure, and reportportal
 
-#### DESCRIPTION
+#### TABLE OF CONTENTS
 
 Key takeaway:
 
