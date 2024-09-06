@@ -53,6 +53,7 @@ export default defineConfig({
     baseURL: process.env.URL,
     extraHTTPHeaders: {},
     trace: "on-first-retry",
+    defaultBrowserType: "chromium",
   },
   /* Configure projects for major browsers */
   projects: [
@@ -66,7 +67,11 @@ export default defineConfig({
     },
     {
       name: "chromium",
-      use: { ...devices["Desktop Chrome"] },
+      use: {
+        ...devices["Desktop Chrome"],
+        baseURL: process.env.BASE_API,
+      },
+      testMatch: ["**/e2e/features/**/*.spec.ts"],
     },
 
     // {
