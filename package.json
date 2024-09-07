@@ -5,12 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test:qa": "NODE_ENV=qa npx playwright test --reporter=list",
-    "test:run-ci-api": "NODE_ENV=prod npx playwright test ./tests/api/**.spec.ts --reporter=list",
-    "test:run-api-RP": "npx playwright test ./tests/api/**/*.spec.ts --config=playwright.config.ts",
-    "test:dev": "NODE_ENV=dev npx playwright test ./tests/**/**/***/*.spec.ts --config=playwright.config.ts",
-    "test:dev-api": "NODE_ENV=dev npx playwright test ./tests/api/**/*.spec.ts --config=playwright.config.ts",
-    "test:dev-ui": "NODE_ENV=dev npx playwright test ./tests/e2e/***.spec.ts --ui",
-    "test:regression": "NODE_ENV=dev npx playwright test ./tests/**/**/***/*.spec.ts --config=playwright.config.ts --grep @regression"
+    "test:dev-api": "NODE_ENV=dev npx playwright test ./tests/api/**/*.spec.ts --config=playwright.config.ts"
   },
   "repository": {
     "type": "git",
