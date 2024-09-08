@@ -30,7 +30,7 @@ loadEnvFile();
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: "./tests/",
+  testDir: "tests",
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -71,7 +71,7 @@ export default defineConfig({
         ...devices["Desktop Chrome"],
         baseURL: process.env.BASE_API,
       },
-      testMatch: ["**/e2e/features/**/*.spec.ts"],
+      // testMatch: ["**/e2e/features/**/*.spec.ts"],
     },
 
     // {

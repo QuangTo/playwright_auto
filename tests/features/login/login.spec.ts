@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { AuthService } from "../../../src/core/api/restfulApi/AuthService";
+import { AuthService } from "../../../src/core/api/AuthService";
 
 test.describe("Authentication Tests", () => {
   let authService: AuthService;

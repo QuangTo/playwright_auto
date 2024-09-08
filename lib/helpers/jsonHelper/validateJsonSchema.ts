@@ -16,7 +16,7 @@ export async function validateJsonSchema(
     await createJsonSchema(fileName, filePath, body);
   }
 
-  const existingSchema = require(`../../../../tests/api/test-data/${filePath}/${fileName}_schema.json`);
+  const existingSchema = require(`../../../../tests/test-data/${filePath}/${fileName}_schema.json`);
   //   console.log("existingSchema: ", existingSchema);
   const ajv = new Ajv({ allErrors: true });
   const validate = ajv.compile(existingSchema);

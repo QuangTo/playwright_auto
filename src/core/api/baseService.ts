@@ -1,8 +1,8 @@
 // token in
 import { createHeaders } from "./deafaultHeaders";
-import { Logger } from "../../helper/logger/Logger";
+import { Logger } from "../../../lib/helpers/logger/Logger";
 import { APIRequestContext, APIResponse } from "@playwright/test";
-import { generateCurlCommand } from "../../helper/logger/generateCurlCommand";
+import { generateCurlCommand } from "../../../lib/helpers/logger/generateCurlCommand";
 
 type HttpMethod = "GET" | "POST" | "PUT" | "DELETE";
 

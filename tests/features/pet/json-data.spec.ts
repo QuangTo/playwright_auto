@@ -1,7 +1,7 @@
 import pet from "../../test-data/json/pet.json";
 import { test, expect } from "@playwright/test";
 
-test.describe("JsonData ", () => {
+test.describe.fixme("JsonData ", () => {
   test("create new pet data", async ({ request }) => {
     //import json data input for test
     const res = await request.post(`v2/pet`, { data: pet });

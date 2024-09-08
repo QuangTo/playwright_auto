@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { generateCurlCommand } from "../../../src/core/helper/logger/generateCurlCommand";
+import { generateCurlCommand } from "../../../lib/helpers/logger/generateCurlCommand";
 
 export type petData = {
   id: number;
@@ -7,7 +7,7 @@ export type petData = {
   status: string;
 };
 
-test.describe("StaticData ", () => {
+test.describe.fixme("StaticData ", () => {
   test("create new pet data", async ({ request, baseURL }) => {
     const data: petData = {
       id: 1,

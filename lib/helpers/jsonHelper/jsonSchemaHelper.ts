@@ -8,13 +8,13 @@ export async function createJsonSchema(
   path: string,
   json: object
 ) {
-  const dirName = `tests/api/test-data/${path}`;
+  const dirName = `tests/test-data/${path}`;
   // console.log("dirName: ", dirName);
   try {
     await fs.mkdir(dirName, { recursive: true });
     const schema = createSchema(json);
     const schemaString = JSON.stringify(schema, null, 2);
-    const schemaName = `tests/api/test-data/${path}/${name}_schema.json`;
+    const schemaName = `tests/test-data/${path}/${name}_schema.json`;
     await writeJsonSchema(schemaName, schemaString);
     Logger.logInfo("JSON Schema created and saved.");
   } catch (error) {

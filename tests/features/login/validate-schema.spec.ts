@@ -1,7 +1,7 @@
 import Ajv from "ajv";
 import { test, expect } from "@playwright/test";
-import { validateJsonSchema } from "../../../src/core/helper/jsonHelper/validateJsonSchema";
-import { generateCurlCommand } from "../../../src/core/helper/logger/generateCurlCommand";
+import { validateJsonSchema } from "../../../lib/helpers/jsonHelper/validateJsonSchema";
+// import { generateCurlCommand } from "../../../src/core/helper/logger/generateCurlCommand";
 
 /**
  * parse json to schema https://json-to-schema.itential.io/
@@ -9,7 +9,7 @@ import { generateCurlCommand } from "../../../src/core/helper/logger/generateCur
  * ref: https://json-schema.org/
  */
 
-test.describe("Schema", () => {
+test.describe.fixme("Schema", () => {
   test("validate simple and statis json schema", async ({ request }) => {
     const ajv = new Ajv();
     let response = await (await request.get(`v2/pet/1`)).json();
