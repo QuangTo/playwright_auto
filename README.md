@@ -28,3 +28,8 @@ npm run test:dev-api
 ```
 
 #### RERPORTER
+
+```
+allure generate ./allure-results -o ./allure-report --clean
+allure open ./allure-report
+```

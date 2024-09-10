@@ -20,12 +20,13 @@
   "homepage": "https://gitlab.com/tvquangcs/auto_demo#readme",
   "devDependencies": {
     "@playwright/test": "^1.45.3",
-    "@reportportal/agent-js-playwright": "^5.1.8",
+    "@reportportal/agent-js-playwright": "^5.1.9",
     "@types/node": "^20.12.7",
     "ajv": "^8.13.0"
   },
   "dependencies": {
     "@faker-js/faker": "^8.4.1",
+    "allure-playwright": "^3.0.0-beta.12",
     "axios": "^1.6.8",
     "dotenv": "^16.4.5",
     "fast-xml-parser": "^4.4.0",
