@@ -39,13 +39,13 @@ export class BaseService {
         requestBody
       );
       Logger.logCurlCommand(
-        `API RESPONSE: ${response.status()}\n}`
-        // `API RESPONSE: ${response.status()}\n ${curlCommand}`
+        // `API RESPONSE: ${response.status()}\n}`
+        `API RESPONSE: ${response.status()}\n ${curlCommand}`
       );
       return response;
     } catch (error) {
-      Logger.logCurlCommand(`ERROR: ${error}\n `);
-      // Logger.logCurlCommand(`ERROR: ${error}\n ${curlCommand}`);
+      // Logger.logCurlCommand(`ERROR: ${error}\n `);
+      Logger.logCurlCommand(`ERROR: ${error}\n ${curlCommand}`);
       throw error;
     }
   }

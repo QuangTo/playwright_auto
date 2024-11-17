@@ -8,9 +8,9 @@ export class LoginPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.userName = page.locator("#login-input");
-    this.password = page.locator("#password-input");
-    this.letMeIn = page.locator("#BSign"); // Corrected the method used for locating the element
+    this.userName = page.locator("#");
+    this.password = page.locator("#");
+    this.letMeIn = page.locator("#");
   }
 
   async inputLogin(userName: string, password: string): Promise<void> {
@@ -18,7 +18,7 @@ export class LoginPage {
     await this.password.fill(password);
   }
 
-  async clickLetMeIn(): Promise<void> {
+  async clickLogin(): Promise<void> {
     await this.letMeIn.click();
   }
 }

@@ -18,45 +18,6 @@ Design
 
 package <br>
 
-```
-root
-├── lib
-│ ├── assert
-│ ├── dataFactory
-│ └── utils
-├── src
-│ ├── components
-│ │ ├── POM
-│ │ |  ├── fixtures
-│ │ ├── DOM
-│ │ └── utils
-│ ├── services
-│ │ ├── core
-│ │ └── DTO
-│ ├── database
-│ │ ├── core
-│ │ └── utlis
-│ ├── utils
-│ │ ├── formatDate
-│ │ └── CURL
-│ ├── helpers
-│ └── dataFactory
-├── tests
-│ ├── ui
-│ │ ├── features
-│ │ ├──  test.spec.ts
-│ │ └── data-test
-│ ├── api
-│ │ ├──  test.spec.ts
-│ │ └── data-test
-├── tests-setup
-│ ├── global
-│ ├── reporter
-├── package.json
-├── config.ts
-└── README.md
-```
-
 #### INSTALL
 
 Before run test scripts make sure that you install node(v20), and playwright latest plugins
