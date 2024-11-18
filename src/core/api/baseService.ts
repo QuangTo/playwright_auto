@@ -38,10 +38,10 @@ export class BaseService {
         url,
         requestBody
       );
-      Logger.logCurlCommand(
-        // `API RESPONSE: ${response.status()}\n}`
-        `API RESPONSE: ${response.status()}\n ${curlCommand}`
-      );
+      // Logger.logCurlCommand(
+      // `API RESPONSE: ${response.status()}\n}`
+      //   `API RESPONSE: ${response.status()}\n ${curlCommand}`
+      // );
       return response;
     } catch (error) {
       // Logger.logCurlCommand(`ERROR: ${error}\n `);

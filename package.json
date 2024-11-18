@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:qa": "NODE_ENV=qa npx playwright test --reporter=list",
-    "test:dev-api": "NODE_ENV=dev npx playwright test "
+    "test:dev-api": "NODE_ENV=dev npx playwright test"
   },
   "repository": {
     "type": "git",
