@@ -21,7 +21,8 @@
     "@playwright/test": "^1.45.3",
     "@reportportal/agent-js-playwright": "^5.1.9",
     "@types/node": "^20.12.7",
-    "ajv": "^8.13.0"
+    "ajv": "^8.13.0",
+    "openapi-typescript": "^7.6.1"
   },
   "dependencies": {
     "@faker-js/faker": "^8.4.1",

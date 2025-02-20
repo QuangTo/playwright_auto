@@ -54,3 +54,18 @@ allure
 allure generate ./allure-results -o ./allure-report --clean
 allure open ./allure-report
 ```
+
+#### Open API Generater
+
+Install
+
+```
+npm install -D openapi-typescript
+```
+
+Genarate
+
+```
+npx openapi-typescript https://automationintesting.online/room/v3/api-docs/room-api  -o src/api/types/room.d.ts
+
+```
