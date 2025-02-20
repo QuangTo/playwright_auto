@@ -1,6 +1,6 @@
 // import { LoginRequest, LoginResponse } from "@api/api-clients/client";
 import { test, expect } from "@playwright/test";
-import type { components, paths } from "../../../src/api/types/auth";
+import type { components, paths } from "@api/types/auth";
 
 test.describe("OpenAPI", { tag: "@smoke" }, () => {
   test("login auth via components", async ({ request }) => {

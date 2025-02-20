@@ -67,6 +67,6 @@ npm install -D openapi-typescript
 Genarate
 
 ```
-npx openapi-typescript https://automationintesting.online/room/v3/api-docs/room-api  -o src/api/types/room.d.ts
+npx openapi-typescript https://automationintesting.online/auth/v3/api-docs/auth-api  -o src/api/types/auth.d.ts
 
 ```
