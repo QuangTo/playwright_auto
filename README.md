@@ -11,6 +11,7 @@ Key take-away:
 - [Running sample test](#running-test)
 - [CI-CD-Cross env](#environments)
 - [Discover reporter](#rerporter)
+- [Open-API Generater](#open-api-generater)
 
 ### TEST FRAMEWORK
 
@@ -55,7 +56,7 @@ allure generate ./allure-results -o ./allure-report --clean
 allure open ./allure-report
 ```
 
-#### Open API Generater
+#### Open-API Generater
 
 Install
 
