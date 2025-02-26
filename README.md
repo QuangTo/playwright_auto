@@ -1,4 +1,6 @@
-# Playwright Automation
+# Playwright Automation Advance
+
+aka pw-adv
 
 Playwright(typescript) framework to cover API & UI scenario. Also present itself reporter, allure, and reportportal
 
@@ -11,13 +13,17 @@ Key take-away:
 - [Running sample test](#running-test)
 - [CI-CD-Cross env](#environments)
 - [Discover reporter](#rerporter)
-- [Open-API Generater](#open-api-generater)
+- [Open-API Generator](#open-api-generator)
 
 ### TEST FRAMEWORK
 
-Design
+Test design:
 
-package <br>
+- Auto generate API with OpenAPI Generator
+- Validate API schema with ajv (zod)
+- Custom fixture, test, expect for UI
+- Github CI/CD
+- Project config
 
 #### INSTALL
 
@@ -56,7 +62,7 @@ allure generate ./allure-results -o ./allure-report --clean
 allure open ./allure-report
 ```
 
-#### Open-API Generater
+#### Open-API Generator
 
 Install
 
