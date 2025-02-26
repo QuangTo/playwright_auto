@@ -70,7 +70,7 @@ Install
 npm install -D openapi-typescript
 ```
 
-Genarate
+Auto Genarate API type
 
 ```
 npx openapi-typescript https://automationintesting.online/auth/v3/api-docs/auth-api  -o src/api/types/auth.d.ts
