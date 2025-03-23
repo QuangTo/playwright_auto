@@ -1,15 +1,18 @@
 import Ajv from "ajv";
 import { test, expect } from "@playwright/test";
 import { validateJsonSchema } from "../../../lib/helpers/jsonHelper/validateJsonSchema";
-// import { generateCurlCommand } from "../../../src/core/helper/logger/generateCurlCommand";
+import { schemas } from "../../../src/core/api/schema/zodiosClient";
 
-/**
- * parse json to schema https://json-to-schema.itential.io/
- * use ajv lib for validate
- * ref: https://json-schema.org/
- */
+test.only("validate openAPI (swagger3)schema use zod", async ({ request }) => {
+  const res = await request.get("https://petstore3.swagger.io/api/v3/pet/1");
+  expect(res.status()).toBe(200);
+  // check schema
+  const resBody = await res.json();
+  const validationResult = schemas.Pet.safeParse(resBody);
+  expect(validationResult.success).toBe(true);
+});
 
-test.describe.fixme("Schema", () => {
+test.describe.skip("Schema", () => {
   test("validate simple and statis json schema", async ({ request }) => {
     const ajv = new Ajv();
     let response = await (await request.get(`v2/pet/1`)).json();
