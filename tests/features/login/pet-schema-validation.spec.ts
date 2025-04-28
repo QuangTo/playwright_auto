@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 import { validateJsonSchema } from "../../../lib/helpers/jsonHelper/validateJsonSchema";
 import { schemas } from "../../../src/core/api/schema/zodiosClient";
 
-test.only("validate openAPI (swagger3)schema use zod", async ({ request }) => {
+test("validate openAPI (swagger3)schema use zod", async ({ request }) => {
   const res = await request.get("https://petstore3.swagger.io/api/v3/pet/1");
   expect(res.status()).toBe(200);
   // check schema

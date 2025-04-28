@@ -75,8 +75,9 @@ Auto Genarate API type
 ```
 npx openapi-typescript https://automationintesting.online/auth/v3/api-docs/auth-api  -o src/api/types/auth.d.ts
 
-Json - swagger 3
+- swagger 3 - the best
 npx openapi-zod-client https://petstore3.swagger.io/api/v3/openapi.json -o src/core/api/schema/zodiosClient.ts
+
 npx openapi-typescript https://petstore3.swagger.io/api/v3/openapi.json --schema -o src/core/api/schema/auth-api.schema.json
 
 ```
