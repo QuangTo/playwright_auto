@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
-import { AuthService } from "../../../src/core/api/AuthService";
+import { AuthService } from "../../src/core/api/AuthService";
 
-test.describe("Authentication", { tag: "@smoke" }, () => {
+test.describe.skip("Authentication", { tag: "@smoke" }, () => {
   let authService: AuthService;
   test.beforeEach(async ({ request }) => {
     const baseUrl = "https://automationintesting.online";

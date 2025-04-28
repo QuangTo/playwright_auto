@@ -10,7 +10,8 @@
     "paths": {
       "@api/*": ["src/core/api/*"],
       "@expects/*": ["src/expects/*"],
-      "@fixtures/*": ["src/fixtures/*"]
+      "@fixtures/*": ["src/fixtures/*"],
+      "@helpers/*": ["lib/helpers/*"]
     }
   }
 }

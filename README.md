@@ -19,9 +19,10 @@ Key take-away:
 
 Test design:
 
-- Auto generate API with OpenAPI Generator
-- Validate API schema with ajv (zod)
-- Custom fixture, test, expect for UI
+- Auto generate API Schema Type with OpenAPI-typescript
+- Convert to zod schema
+- Validate API schema (zod/ajv)
+- Custom fixture, test, expect
 - Github CI/CD
 - Project config
 
@@ -37,7 +38,7 @@ npm i
 #### RUNNING TEST
 
 ```
-npm run test:dev-api
+npm run test:dev
 ```
 
 ### ENVIRONMENTS
@@ -52,7 +53,7 @@ Ability to run cross env. sample here is dev and qa env using dotenv <br>
 default
 
 ```
-npm run test:dev-api
+npm run test:dev
 ```
 
 allure
@@ -62,22 +63,34 @@ allure generate ./allure-results -o ./allure-report --clean
 allure open ./allure-report
 ```
 
-#### Open-API Generator
+## API Specification
+
+- (Swagger)OpenAPI 3.0 & (OAS)3.1
+
+Format:
+
+- JSON Schema
+
+### Tool/ Lib
+
+##### JSON Schema Validator
+
+Sample OPENAPI
+
+```
+OpenAPI 3.1(aka OAS):
+https://petstore31.swagger.io/api/v31/openapi.json
+```
 
 Install
 
 ```
-npm install -D openapi-typescript
+npm install -D openapi-typescript zod
 ```
 
-Auto Genarate API type
-
 ```
-npx openapi-typescript https://automationintesting.online/auth/v3/api-docs/auth-api  -o src/api/types/auth.d.ts
-
-- swagger 3 - the best
-npx openapi-zod-client https://petstore3.swagger.io/api/v3/openapi.json -o src/core/api/schema/zodiosClient.ts
-
-npx openapi-typescript https://petstore3.swagger.io/api/v3/openapi.json --schema -o src/core/api/schema/auth-api.schema.json
-
+npx openapi-typescript https://petstore3.swagger.io/api/v3/openapi.json  -o src/api/schema/openAPISchema.d.ts --root-types
 ```
+
+Mock data: @anatine/zod-mock
+Type: openapi-types

@@ -17,7 +17,7 @@ export async function createJsonSchema(
     const schemaName = `tests/test-data/${path}/${name}_schema.json`;
     await writeJsonSchema(schemaName, schemaString);
     Logger.logInfo("JSON Schema created and saved.");
-  } catch (error) {
+  } catch (error: any) {
     Logger.logError(error);
   }
 }
