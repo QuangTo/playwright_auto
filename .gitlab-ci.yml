@@ -30,7 +30,7 @@ test-api:
   stage: tests
   image: mcr.microsoft.com/playwright:v1.52.0-noble
   script:
-    - npm run test:dev
+    - npx playwright test
   allow_failure: true
   artifacts:
     when: always
