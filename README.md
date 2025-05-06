@@ -89,8 +89,16 @@ npm install -D openapi-typescript zod
 ```
 
 ```
-npx openapi-typescript https://petstore3.swagger.io/api/v3/openapi.json  -o src/api/schema/openAPISchema.d.ts --root-types
+npx openapi-typescript https://petstore3.swagger.io/api/v3/openapi.json  -o src/api/schema/openApiType.d.ts
+```
+
+convert to zod schema
+
+```
+npx openapi-zod-client https://petstore3.swagger.io/api/v3/openapi.json -o src/api/schema/zodShema.ts
 ```
 
 Mock data: @anatine/zod-mock
 Type: openapi-types
+
+openapi-diff : identify the differences of version
