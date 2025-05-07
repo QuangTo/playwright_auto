@@ -8,12 +8,12 @@ Playwright(typescript) framework to cover API & UI scenario. Also present itself
 
 Key take-away:
 
-- [Test automation framework package](#test-framework)
+- [Basic Test automation framework](#test-framework)
 - [Install](#install)
 - [Running sample test](#running-test)
 - [CI-CD-Cross env](#environments)
-- [Discover reporter](#rerporter)
 - [Open-API Generator](#open-api-generator)
+- [Discover reporter](#rerporter)
 
 ### TEST FRAMEWORK
 
@@ -21,7 +21,7 @@ Test design:
 
 - Auto generate API Schema Type with OpenAPI-typescript
 - Convert to zod schema
-- Validate API schema (zod/ajv)
+- Validate both request and response API schema
 - Custom fixture, test, expect
 - Github CI/CD
 - Project config
@@ -47,21 +47,6 @@ Ability to run cross env. sample here is dev and qa env using dotenv <br>
 
 - dev <br>
 - qa <br>
-
-#### RERPORTER
-
-default
-
-```
-npm run test:dev
-```
-
-allure
-
-```
-allure generate ./allure-results -o ./allure-report --clean
-allure open ./allure-report
-```
 
 ## API Specification
 
@@ -102,3 +87,18 @@ Mock data: @anatine/zod-mock
 Type: openapi-types
 
 openapi-diff : identify the differences of version
+
+#### RERPORTER
+
+default
+
+```
+npm run test:dev
+```
+
+allure
+
+```
+allure generate ./allure-results -o ./allure-report --clean
+allure open ./allure-report
+```
