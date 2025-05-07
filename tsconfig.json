@@ -9,6 +9,7 @@
     "strict": true,
     "paths": {
       "@api/*": ["src/core/api/*"],
+      "@schema/*": ["src/api/Schema/*"],
       "@expects/*": ["src/expects/*"],
       "@fixtures/*": ["src/fixtures/*"],
       "@helpers/*": ["lib/helpers/*"]
