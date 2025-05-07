@@ -36,6 +36,7 @@
     "eslint": "^9.21.0",
     "genson-js": "^0.0.8",
     "js-yaml": "^4.1.0",
+    "oas": "^27.0.0",
     "openapi-zod-client": "^1.18.3",
     "playwright": "^1.43.1",
     "prettier": "^3.5.2",

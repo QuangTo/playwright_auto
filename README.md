@@ -86,7 +86,7 @@ npx openapi-zod-client https://petstore3.swagger.io/api/v3/openapi.json -o src/a
 Mock data: @anatine/zod-mock
 Type: openapi-types
 
-openapi-diff : identify the differences of version
+oas : validate the differences of openapi doc version
 
 #### RERPORTER
 
