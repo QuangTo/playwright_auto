@@ -1,30 +1,14 @@
-# Playwright Automation Advance
+# Playwright Automation
 
-aka pw-adv
-
-Playwright(typescript) framework to cover API & UI scenario. Also present itself reporter, allure, and reportportal
+Playwright(typescript) framework to cover API & UI scenario. Leverage with generator some tools. Easy coding
 
 #### TABLE OF CONTENTS
 
-Key take-away:
-
-- [Basic Test automation framework](#test-framework)
 - [Install](#install)
 - [Running sample test](#running-test)
-- [CI-CD-Cross env](#environments)
-- [Open-API Generator](#open-api-generator)
+- [Setup Cross env](#environments)
+- [OpenApi Specification](#OPENAPI)
 - [Discover reporter](#rerporter)
-
-### TEST FRAMEWORK
-
-Test design:
-
-- Auto generate API Schema Type with OpenAPI-typescript
-- Convert to zod schema
-- Validate both request and response API schema
-- Custom fixture, test, expect
-- Github CI/CD
-- Project config
 
 #### INSTALL
 
@@ -48,19 +32,17 @@ Ability to run cross env. sample here is dev and qa env using dotenv <br>
 - dev <br>
 - qa <br>
 
-## API Specification
+### OPENAPI
 
-- (Swagger)OpenAPI 3.0 & (OAS)3.1
+Validate Swagger OpenAPI 3.0 & 3.1 (aka OAS)
 
-Format:
+1. Check version api changes
+2. Generate to ts schema type
+3. Convert to zod schema
+4. Use mock data base on zod schema
+5. (AI - upcoming) generate happy cases base on schema and endpoint
 
-- JSON Schema
-
-### Tool/ Lib
-
-##### JSON Schema Validator
-
-Sample OPENAPI
+Sample
 
 ```
 OpenAPI 3.1(aka OAS):
@@ -77,21 +59,24 @@ npm install -D openapi-typescript zod
 npx openapi-typescript https://petstore3.swagger.io/api/v3/openapi.json  -o src/api/schema/openApiType.d.ts
 ```
 
-convert to zod schema (it doesn't work with OAS 3.1)
+convert to zod schema
 
 ```
 npx openapi-zod-client https://petstore3.swagger.io/api/v3/openapi.json -o src/api/schema/zodShema.ts
 ```
 
-Mock data: @anatine/zod-mock
-Type: openapi-types
+Mock data:
+
+```
+@anatine/zod-mock
+```
 
 #### RERPORTER
 
 default
 
 ```
-npm run test:dev
+npx playwright show-report
 ```
 
 allure
