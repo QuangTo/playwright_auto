@@ -36,7 +36,7 @@ Ability to run cross env. sample here is dev and qa env using dotenv <br>
 
 Validate Swagger OpenAPI 3.0 & 3.1 (aka OAS)
 
-1. Check api version  changes
+1. Check api version changes
 2. Generate to ts schema type
 3. Convert to zod schema
 4. Use mock data base on zod schema
@@ -69,6 +69,13 @@ Mock data:
 
 ```
 @anatine/zod-mock
+```
+
+GEnerated FullAPIClient
+
+```
+@moznion/openapi-fetch-gen
+npx openapi-fetch-gen -i src/api/Schema/openApiType.d.ts -o src/api/Schema/generatedClient.ts
 ```
 
 #### RERPORTER
