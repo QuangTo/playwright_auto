@@ -8,9 +8,9 @@ export class LoginPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.userName = page.locator("#");
-    this.password = page.locator("#");
-    this.letMeIn = page.locator("#");
+    this.userName = page.getByTestId("username");
+    this.password = page.getByTestId("password");
+    this.letMeIn = page.getByRole("button", { name: "Login" });
   }
 
   async inputLogin(userName: string, password: string): Promise<void> {

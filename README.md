@@ -4,22 +4,11 @@ Playwright(typescript) framework to cover API & UI scenario. Leverage with gener
 
 #### TABLE OF CONTENTS
 
-- [Install](#install)
 - [Running sample test](#running-test)
 - [Setup Cross env](#environments)
 - [OpenApi Specification](#OPENAPI)
+- [UI](#UI)
 - [Discover reporter](#rerporter)
-
-#### INSTALL
-
-Before run test scripts make sure that you install node(v20), and playwright latest plugins
-
-```
-git clone git@github.com:QuangTo/playwright_auto.git
-npm i
-```
-
-#### RUNNING TEST
 
 ```
 npm run test:dev
@@ -71,24 +60,25 @@ Mock data:
 @anatine/zod-mock
 ```
 
-GEnerated FullAPIClient
+Generated FullAPIClient
 
 ```
 @moznion/openapi-fetch-gen
 npx openapi-fetch-gen -i src/api/Schema/openApiType.d.ts -o src/api/Schema/generatedClient.ts
 ```
 
+#### UI
+
+- Login POM
+- Custom fixture (new fixture and mergefixture)
+- Overrrite default fixture (page)
+- Showcase with worker, devices, paralell mode (playwright.config.ts)
+- etc..
+
 #### RERPORTER
 
-default
+html default is better or reportportal
 
 ```
 npx playwright show-report
-```
-
-allure
-
-```
-allure generate ./allure-results -o ./allure-report --clean
-allure open ./allure-report
 ```
