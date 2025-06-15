@@ -1,4 +1,4 @@
-import { Page, Locator } from "@playwright/test";
+import { Page, Locator } from '@playwright/test';
 
 export class LoginPage {
   private page: Page;
@@ -8,9 +8,9 @@ export class LoginPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.userName = page.getByTestId("username");
-    this.password = page.getByTestId("password");
-    this.letMeIn = page.getByRole("button", { name: "Login" });
+    this.userName = page.getByTestId('username');
+    this.password = page.getByTestId('password');
+    this.letMeIn = page.getByRole('button', { name: 'Login' });
   }
 
   async inputLogin(userName: string, password: string): Promise<void> {

@@ -1,4 +1,4 @@
-import { faker } from "@faker-js/faker";
+import { faker } from '@faker-js/faker';
 
 // export const BASE_URL = "https://www.saucedemo.com/";
 export const uniqueFirstname = faker.person.firstName();

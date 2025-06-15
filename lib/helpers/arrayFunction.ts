@@ -4,14 +4,9 @@ export function valueExistsInArray(array: [], key: string, value: string) {
   });
 }
 
-export function removeItemsFromArray(
-  arrayToFilter: string[],
-  itemsToRemove: string[]
-) {
+export function removeItemsFromArray(arrayToFilter: string[], itemsToRemove: string[]) {
   itemsToRemove.forEach((itemToRemove) => {
-    arrayToFilter = arrayToFilter.filter(
-      (arrayItem) => arrayItem !== itemToRemove
-    );
+    arrayToFilter = arrayToFilter.filter((arrayItem) => arrayItem !== itemToRemove);
   });
 
   return arrayToFilter;

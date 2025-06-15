@@ -1,4 +1,4 @@
-import { request } from "@playwright/test";
+import { request } from '@playwright/test';
 
 async function teardown(): Promise<void> {
   // close DB connection
@@ -6,5 +6,5 @@ async function teardown(): Promise<void> {
   const context = await request.newContext();
   // await context.delete(url);
   const res = await context.dispose();
-  console.log("teardown");
+  console.log('teardown');
 }

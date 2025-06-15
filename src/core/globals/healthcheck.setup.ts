@@ -1,4 +1,4 @@
-import { request } from "@playwright/test";
+import { request } from '@playwright/test';
 
 async function healthCheck(): Promise<boolean> {
   const HEALTHCHECK_URL = `${process.env.BASE_URL}/healthCheck`;
@@ -8,7 +8,7 @@ async function healthCheck(): Promise<boolean> {
     const res = await context.get(HEALTHCHECK_URL);
     if (res.status() === 200) {
       const data = await res.json();
-      return data.status === "ok";
+      return data.status === 'ok';
     } else {
       return false;
     }
@@ -19,6 +19,6 @@ async function healthCheck(): Promise<boolean> {
 }
 
 async function notifySlac(message: string): Promise<any> {
-  const webhook = "";
+  const webhook = '';
   //
 }

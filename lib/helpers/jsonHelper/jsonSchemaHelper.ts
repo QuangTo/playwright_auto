@@ -1,13 +1,9 @@
-import * as fs from "fs/promises";
-import { createSchema } from "genson-js";
-import { Logger } from "../logger/Logger";
+import * as fs from 'fs/promises';
+import { createSchema } from 'genson-js';
+import { Logger } from '../logger/Logger';
 
 // create json schema on local based on path.
-export async function createJsonSchema(
-  name: string,
-  path: string,
-  json: object
-) {
+export async function createJsonSchema(name: string, path: string, json: object) {
   const dirName = `tests/test-data/${path}`;
   // console.log("dirName: ", dirName);
   try {
@@ -16,7 +12,7 @@ export async function createJsonSchema(
     const schemaString = JSON.stringify(schema, null, 2);
     const schemaName = `tests/test-data/${path}/${name}_schema.json`;
     await writeJsonSchema(schemaName, schemaString);
-    Logger.logInfo("JSON Schema created and saved.");
+    Logger.logInfo('JSON Schema created and saved.');
   } catch (error: any) {
     Logger.logError(error);
   }

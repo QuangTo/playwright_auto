@@ -1,14 +1,10 @@
-import type { OpenAPIV3 } from "openapi-types";
+import type { OpenAPIV3 } from 'openapi-types';
 
-export async function fetchOpenApiInfo(
-  url: string
-): Promise<{ openapi: string; version: string }> {
+export async function fetchOpenApiInfo(url: string): Promise<{ openapi: string; version: string }> {
   try {
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error(
-        `Failed to fetch OpenAPI JSON. Status: ${response.status}`
-      );
+      throw new Error(`Failed to fetch OpenAPI JSON. Status: ${response.status}`);
     }
 
     const openApiDoc = await response.json();
@@ -23,7 +19,7 @@ export async function fetchOpenApiInfo(
 
     return { openapi, version };
   } catch (error) {
-    console.error("Error fetching or parsing OpenAPI JSON:", error);
+    console.error('Error fetching or parsing OpenAPI JSON:', error);
     throw error;
   }
 }

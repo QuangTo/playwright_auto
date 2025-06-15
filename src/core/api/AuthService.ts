@@ -1,6 +1,6 @@
-import { APIRequestContext } from "@playwright/test";
-import { BaseService } from "./baseService";
-import { createHeaders } from "./deafaultHeaders";
+import { APIRequestContext } from '@playwright/test';
+import { BaseService } from './baseService';
+import { createHeaders } from './deafaultHeaders';
 
 export class AuthService extends BaseService {
   protected baseUrl: string;

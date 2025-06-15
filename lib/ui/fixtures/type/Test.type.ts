@@ -1,4 +1,4 @@
-import { Page, BrowserContext } from "@playwright/test";
+import { Page, BrowserContext } from '@playwright/test';
 
 export interface PageFixtures {
   newContext: BrowserContext;

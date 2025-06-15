@@ -4,18 +4,14 @@ type HeaderOptions = {
   additionalHeaders?: Record<string, string>;
 };
 
-export function createHeaders({
-  contentType = "application/json",
-  token = "",
-  additionalHeaders = {},
-}: HeaderOptions = {}): Record<string, string> {
+export function createHeaders({ contentType = 'application/json', token = '', additionalHeaders = {} }: HeaderOptions = {}): Record<string, string> {
   const headers: Record<string, string> = {
-    "Content-Type": contentType,
-    ...additionalHeaders,
+    'Content-Type': contentType,
+    ...additionalHeaders
   };
 
   if (token) {
-    headers["Authorization"] = `Bearer ${token}`;
+    headers['Authorization'] = `Bearer ${token}`;
   }
 
   return headers;

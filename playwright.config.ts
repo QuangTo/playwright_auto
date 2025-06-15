@@ -1,12 +1,12 @@
-import { defineConfig, devices } from "@playwright/test";
-import { RPconfig } from "./src/report/RPconfig";
-import { config } from "dotenv";
-import { resolve } from "path";
-import fs from "fs";
+import { defineConfig, devices } from '@playwright/test';
+import { RPconfig } from './src/report/RPconfig';
+import { config } from 'dotenv';
+import { resolve } from 'path';
+import fs from 'fs';
 
 // config();
 function loadEnvFile() {
-  const envFile = `.env.${process.env.NODE_ENV || "dev"}`;
+  const envFile = `.env.${process.env.NODE_ENV || 'dev'}`;
   const envPath = resolve(__dirname, envFile);
 
   if (fs.existsSync(envPath)) {
@@ -30,7 +30,7 @@ loadEnvFile();
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: "tests",
+  testDir: 'tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -42,7 +42,7 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
-    ["html", { printSteps: true }],
+    ['html', { printSteps: true }]
     // ["@reportportal/agent-js-playwright", RPconfig],
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
@@ -53,37 +53,37 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     baseURL: process.env.BASE_API,
     extraHTTPHeaders: {},
-    trace: "on-first-retry",
-    testIdAttribute: "id",
+    trace: 'on-first-retry',
+    testIdAttribute: 'id'
   },
   /* Configure projects for major browsers */
   projects: [
     {
-      name: "setup data",
-      testMatch: /global\.setup\.ts/,
+      name: 'setup data',
+      testMatch: /global\.setup\.ts/
     },
     {
-      name: "clean up data",
-      testMatch: /.teardown.ts/,
+      name: 'clean up data',
+      testMatch: /.teardown.ts/
     },
     {
-      name: "desktop",
+      name: 'desktop',
       grep: /@desktop/,
       fullyParallel: true,
       use: {
-        ...devices["Desktop Chrome"],
-        browserName: "firefox",
-      },
+        ...devices['Desktop Chrome'],
+        browserName: 'firefox'
+      }
     },
     {
-      name: "mobile",
+      name: 'mobile',
       grep: /@mobile/,
       workers: 1,
       use: {
-        ...devices["iPhone 13 Pro Max"],
-        browserName: "chromium",
-      },
-    },
+        ...devices['iPhone 13 Pro Max'],
+        browserName: 'chromium'
+      }
+    }
 
     // {
     //   name: "firefox",
@@ -114,7 +114,7 @@ export default defineConfig({
     //   name: 'Google Chrome',
     //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     // },
-  ],
+  ]
 
   /* Run your local dev server before starting the tests */
   // webServer: {
