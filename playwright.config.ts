@@ -1,5 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
-import { RPconfig } from './src/report/RPconfig';
+import { RPconfig } from './src/setup/report/RPconfig';
 import { config } from 'dotenv';
 import { resolve } from 'path';
 import fs from 'fs';

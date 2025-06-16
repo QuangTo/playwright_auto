@@ -1,6 +1,6 @@
 import { PageFixtures } from './type/Test.type';
 import { test as base, mergeTests } from '@playwright/test';
-import { test as loginPage } from './login.fixture';
+import { test as loginPage } from './loginFixture';
 import { test as schemaCheck } from './validSchema';
 
 export const loginInfo = base.extend<{ beforeEachTest: void }>({

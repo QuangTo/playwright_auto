@@ -1,7 +1,7 @@
 import { request } from '@playwright/test';
 import type { APIResponse } from '@playwright/test';
-import { Logger } from '../../../lib/helpers/logger/Logger';
-import { generateCurlCommand } from '../../../lib/helpers/logger/generateCurlCommand';
+import { Logger } from '../../api/helpers/logger/Logger';
+import { generateCurlCommand } from '../../api/helpers/logger/generateCurlCommand';
 
 async function globalSetup() {
   // given system require thoses info below for authentication

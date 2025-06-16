@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { AuthService } from '../../src/core/api/AuthService';
+import { AuthService } from '../../src/api/endpoint/AuthService';
 
 test.describe.skip('Authentication', { tag: '@smoke' }, () => {
   let authService: AuthService;

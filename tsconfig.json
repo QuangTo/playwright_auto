@@ -8,11 +8,11 @@
     "esModuleInterop": true,
     "strict": true,
     "paths": {
-      "@api/*": ["src/core/api/*"],
-      "@schema/*": ["src/api/Schema/*"],
+      "@api/*": ["src/api/endpoint/*"],
+      "@schema/*": ["src/api/schemas/*"],
       "@expects/*": ["src/expects/*"],
-      "@fixtures/*": ["lib/ui/fixtures/*"],
-      "@helpers/*": ["lib/helpers/*"]
+      "@fixtures/*": ["src/utils/pageFixtures/*"],
+      "@helpers/*": ["src/api/helpers/*"]
     }
   }
 }

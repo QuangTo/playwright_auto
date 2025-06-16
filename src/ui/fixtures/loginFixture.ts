@@ -1,13 +1,13 @@
-import { LoginPage } from '../pages/login';
+import { LoginPage } from '../../ui/pages/login';
 import { test as base } from '@playwright/test';
 
 type LoginFixture = {
   // optional return page or void
-  loginPage: (userName?: string, password?: string) => Promise<LoginPage>;
+  loginPageAsAdmin: (userName?: string, password?: string) => Promise<LoginPage>;
 };
 
 export const test = base.extend<LoginFixture>({
-  loginPage: async ({ page }, use) => {
+  loginPageAsAdmin: async ({ page }, use) => {
     const login = async (userName: string = 'admin', password: string = 'password') => {
       const loginPage = new LoginPage(page);
       await loginPage.inputLogin(userName, password);
