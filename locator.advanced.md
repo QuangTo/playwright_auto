@@ -26,3 +26,17 @@ Check visible to prevent strict mode violation
 ```
     await page.getByRole('button', {name:"Add"}).filter({visible:true}).click()
 ```
+
+Handle different id but on the page it perform same User function
+
+```
+    try {
+        await Promise.race([
+          page.getByTestId('ctl_personal_clinic_q_3_3').check(),
+          page.getByTestId('ctl_physician_personal_q_1_0').check(),
+          page.getByTestId('ctl_primary_user_q_1_1').check()
+        ]);
+      } catch {
+        console.warn('Neither checkbox was found and checked.');
+      }
+```
