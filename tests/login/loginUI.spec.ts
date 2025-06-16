@@ -1,4 +1,4 @@
-import { expect, test } from 'src/utils/pageFixtures/baseFixture';
+import { expect, test } from 'src/ui/fixtures/baseFixture';
 
 /**
  *  custom login fixture demo
