@@ -5,7 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test:dev": "NODE_ENV=dev npx playwright test",
-    "test:happy": "NODE_ENV=dev npx playwright test --grep=@happy"
+    "test:happy": "NODE_ENV=dev npx playwright test --grep=@happy",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "**/*.ts": [
+      "npx eslint",
+      "npx eslint --fix",
+      "npx prettier . --write"
+    ]
   },
   "repository": {
     "type": "git",
@@ -24,11 +32,17 @@
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^20.12.7",
     "ajv": "^8.17.1",
+    "eslint": "^9.31.0",
     "eslint-plugin-playwright": "^2.2.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
     "openapi-diff": "^0.23.7",
     "openapi-typescript": "^7.6.1",
     "prettier": "^3.5.3",
-    "typescript": "^5.8.3"
+    "semver": "^7.7.2",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.38.0",
+    "zod": "^3.25.76"
   },
   "dependencies": {
     "@anatine/zod-mock": "^3.14.0",
@@ -38,16 +52,12 @@
     "allure-playwright": "^3.0.0-beta.12",
     "axios": "^1.9.0",
     "dotenv": "^16.4.5",
-    "eslint": "^9.21.0",
     "genson-js": "^0.0.8",
     "js-yaml": "^4.1.0",
     "openapi-fetch": "^0.14.0",
     "openapi-types": "^12.1.3",
     "openapi-zod-client": "^1.18.3",
-    "playwright": "^1.43.1",
-    "semver": "^7.7.1",
     "swagger-parser": "^10.0.3",
-    "xml2js": "^0.6.2",
-    "zod": "^3.24.3"
+    "xml2js": "^0.6.2"
   }
 }
