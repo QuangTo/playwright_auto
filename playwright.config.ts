@@ -1,5 +1,4 @@
 import { defineConfig, devices } from '@playwright/test';
-import { RPconfig } from './src/setup/report/RPconfig';
 import { config } from 'dotenv';
 import { resolve } from 'path';
 import fs from 'fs';
@@ -41,10 +40,9 @@ export default defineConfig({
 
   /* Opt out of parallel tests on CI. */
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [
-    ['html', { printSteps: true }]
-    // ["@reportportal/agent-js-playwright", RPconfig],
-  ],
+  reporter: [process.env.CI ? ['list'] : ['list', { printSteps: true }], ['html', { noSnippets: true }]],
+
+  // ["@reportportal/agent-js-playwright", RPconfig],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
@@ -58,21 +56,22 @@ export default defineConfig({
   },
   /* Configure projects for major browsers */
   projects: [
-    {
-      name: 'setup data',
-      testMatch: /global\.setup\.ts/
-    },
-    {
-      name: 'clean up data',
-      testMatch: /.teardown.ts/
-    },
+    // {
+    //   name: 'setup data',
+    //   testMatch: /global\.setup\.ts/
+    // },
+    // {
+    //   name: 'clean up data',
+    //   testMatch: /.teardown.ts/
+    // },
     {
       name: 'desktop',
       grep: /@desktop/,
       fullyParallel: true,
       use: {
-        ...devices['Desktop Chrome'],
-        browserName: 'firefox'
+        browserName: 'firefox',
+        ...devices['Desktop Firefox']
+        // viewport:[]
       }
     },
     {

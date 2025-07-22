@@ -1,7 +1,7 @@
 {
   "singleQuote": true,
   "trailingComma": "none",
-  "printWidth": 150,
+  "printWidth": 160,
   "endOfLine": "auto",
   "tabWidth": 2
 }

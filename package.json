@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:dev": "NODE_ENV=dev npx playwright test"
+    "test:dev": "NODE_ENV=dev npx playwright test",
+    "test:happy": "NODE_ENV=dev npx playwright test --grep=@happy"
   },
   "repository": {
     "type": "git",
@@ -18,11 +19,12 @@
   },
   "homepage": "https://gitlab.com/tvquangcs/auto_demo#readme",
   "devDependencies": {
-    "@playwright/test": "^1.52.0",
+    "@playwright/test": "^1.54.0",
     "@reportportal/agent-js-playwright": "^5.1.9",
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^20.12.7",
     "ajv": "^8.17.1",
+    "eslint-plugin-playwright": "^2.2.0",
     "openapi-diff": "^0.23.7",
     "openapi-typescript": "^7.6.1",
     "prettier": "^3.5.3",
@@ -37,7 +39,6 @@
     "axios": "^1.9.0",
     "dotenv": "^16.4.5",
     "eslint": "^9.21.0",
-    "eslint-plugin-playwright": "^2.2.0",
     "genson-js": "^0.0.8",
     "js-yaml": "^4.1.0",
     "openapi-fetch": "^0.14.0",
