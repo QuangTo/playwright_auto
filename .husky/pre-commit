@@ -1,31 +1,25 @@
+#!/bin/sh
 
 echo "🧑‍💻 Running lint-staged..."
 npx lint-staged
 
 STATUS=$?
-if [ "$STATUS" -eq 0 ]; then
-  echo "🎉 No errors found. Let it go... 🚀"
-  exit 0 
-elif [ "$STATUS" -eq 1 ]; then
+if [ "$STATUS" -eq 1 ]; then
   echo "👮‍♂️ Commit blocked: Lint errors found in staged files 🚨"
   echo "🛠️ Fix them before committing 🤖"
   exit 1
-else
-  echo "💥 Unexpected error: Something went wrong"
+elif [ "$STATUS" -ne 0 ]; then
+  echo "💥 Unexpected error from lint-staged"
   exit $STATUS
 fi
 
+MATCHED=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(spec|test)\.ts$' | xargs grep -n '\.only' 2>/dev/null || true)
 
-# Get staged .spec.ts or .test.ts files
-FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(spec|test)\.ts$')
-
-if [ -n "$FILES" ]; then
-  # Search for `.only` in those test files
-  MATCHED=$(echo "$FILES" | xargs grep -n '\.only' || true)
-
-  if [ -n "$MATCHED" ]; then
-    echo "$MATCHED"
-    echo "👮‍♂️  Commit blocked: Remove '.only' in test files before commit 🚨"
-    exit 1
-  fi
+if [ -n "$MATCHED" ]; then
+  echo "$MATCHED"
+  echo "👮‍♂️ Commit blocked: Remove '.only' in test files before commit 🚨"
+  exit 1
 fi
+
+echo "🎉 No errors found. Let it go... 🚀"
+exit 0
