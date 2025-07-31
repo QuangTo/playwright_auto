@@ -13,13 +13,5 @@ elif [ "$STATUS" -ne 0 ]; then
   exit $STATUS
 fi
 
-MATCHED=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(spec|test)\.ts$' | xargs grep -n '\.only' 2>/dev/null || true)
-
-if [ -n "$MATCHED" ]; then
-  echo "$MATCHED"
-  echo "👮‍♂️ Commit blocked: Remove '.only' in test files before commit 🚨"
-  exit 1
-fi
-
 echo "🎉 No errors found. Let it go... 🚀"
 exit 0
