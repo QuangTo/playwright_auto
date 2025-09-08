@@ -19,7 +19,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           cache: 'npm'
-
+      - name: Create .env.dev
+        run: |
+          echo "USERNAME=${{ secrets.USERNAME }}" >> .env.dev
+          echo "PASSWORD=${{ secrets.PASSWORD }}" >> .env.dev
+          echo "BASE_API_URL=${{ secrets.BASE_API_URL }}" >> .env.dev
       - name: Install dependencies
         run: |
           npm ci
