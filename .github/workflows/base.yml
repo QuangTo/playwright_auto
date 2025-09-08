@@ -23,10 +23,10 @@ jobs:
       - name: Install dependencies
         run: |
           npm ci
-          HOME=/root npx playwright install --with-deps chromium firefox
+          HOME=/root npx playwright install --with-deps chromium
 
       - name: Run Playwright tests
-        run: HOME=/root npm run test:dev
+        run: HOME=/root npm run test:all
 
       - name: Upload test results
         if: always()

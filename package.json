@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:dev": "NODE_ENV=dev npx playwright test",
-    "test:happy": "NODE_ENV=dev npx playwright test --grep=@happy",
+    "test:all": "npx playwright test",
+    "test:happy": "npx playwright test --grep=@happy",
     "prepare": "husky install"
   },
   "lint-staged": {
@@ -51,6 +51,7 @@
     "@openapi-contrib/openapi-schema-to-json-schema": "^5.1.0",
     "allure-playwright": "^3.0.0-beta.12",
     "axios": "^1.9.0",
+    "cohere-ai": "^7.18.1",
     "dotenv": "^16.4.5",
     "genson-js": "^0.0.8",
     "js-yaml": "^4.1.0",

@@ -65,24 +65,32 @@ export default defineConfig({
     //   testMatch: /.teardown.ts/
     // },
     {
-      name: 'desktop',
-      grep: /@desktop/,
+      name: 'browser',
+      grep: /@browser/,
       fullyParallel: true,
       use: {
-        browserName: 'firefox',
-        ...devices['Desktop Firefox']
+        browserName: 'chromium',
+        ...devices['Desktop Chrome']
         // viewport:[]
       }
     },
     {
-      name: 'mobile',
-      grep: /@mobile/,
-      workers: 1,
+      name: 'api',
+      grep: /@api/,
+      fullyParallel: true,
       use: {
-        ...devices['iPhone 13 Pro Max'],
-        browserName: 'chromium'
+        headless: true
       }
     }
+    // {
+    //   name: 'mobile',
+    //   grep: /@mobile/,
+    //   workers: 1,
+    //   use: {
+    //     ...devices['iPhone 13 Pro Max'],
+    //     browserName: 'chromium'
+    //   }
+    // }
 
     // {
     //   name: "firefox",

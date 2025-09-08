@@ -3,7 +3,7 @@ import { expect, test } from 'src/ui/fixtures/baseFixture';
 /**
  *  custom login fixture demo
  */
-test('login with fixture', { tag: '@desktop' }, async ({ page, loginPageAsAdmin }) => {
+test('login with fixture', { tag: '@browser' }, async ({ page, loginPageAsAdmin }) => {
   // navigate
   await page.goto('https://automationintesting.online/admin');
   //use custom fixture
