@@ -1,25 +1,33 @@
 #!/bin/sh
 
-echo "🧑‍💻 Running lint-staged..."
-npx lint-staged
+# Step 1: Check for `.only` in staged test files
+FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(spec|test)\.ts$|setup\.ts$' || true)
 
+if [ -n "$FILES" ]; then
+  MATCHED=$(echo "$FILES" | xargs grep -n '\.only' || true)
+
+  if [ -n "$MATCHED" ]; then
+    echo "$MATCHED"
+    echo "👮‍♂️ Commit blocked: Found '.only' in test files (.spec.ts, .test.ts, setup.ts)🚨"
+    echo "🛠️ Remove '.only' before committing."
+    exit 1
+  fi
+fi
+
+# Step 2: Run lint-staged
+echo "✅ No '.only' found in test files. Proceeding to lint..."
+npx lint-staged
 STATUS=$?
+
+# If lint-staged fails, block commit immediately
 if [ "$STATUS" -eq 1 ]; then
   echo "👮‍♂️ Commit blocked: Lint errors found in staged files 🚨"
   echo "🛠️ Fix them before committing 🤖"
   exit 1
 elif [ "$STATUS" -ne 0 ]; then
-  echo "💥 Unexpected error from lint-staged"
+  echo "💥 Unexpected error from lint-staged $STATUS"
   exit $STATUS
 fi
 
-MATCHED=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(spec|test)\.ts$' | xargs grep -n '\.only' 2>/dev/null || true)
-
-if [ -n "$MATCHED" ]; then
-  echo "$MATCHED"
-  echo "👮‍♂️ Commit blocked: Remove '.only' in test files before commit 🚨"
-  exit 1
-fi
-
-echo "🎉 No errors found. Let it go... 🚀"
+echo "✅ No errors found. Let it go... 🚀"
 exit 0
