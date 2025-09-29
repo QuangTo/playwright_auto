@@ -1,4 +1,4 @@
-import { LoginPage } from '../../ui/pages/login';
+import { LoginPage } from '../pages/login';
 import { test as base } from '@playwright/test';
 
 type LoginFixture = {

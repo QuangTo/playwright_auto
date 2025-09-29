@@ -5,13 +5,14 @@ import { test as schemaCheck } from './validSchema';
 
 export const loginInfo = base.extend<{ beforeEachTest: void }>({
   beforeEachTest: [
-    async ({}, use, worker) => {
-      console.log('worker', worker.workerIndex, worker.project.name);
+    async ({}, use) => {
+      // do somethings
       await use();
     },
-    { auto: true }
+    { scope: 'test', auto: true }
   ]
+  // add another for worker scope
 });
 
-export const test = mergeTests(loginPage, schemaCheck);
 export { expect, Page, Locator } from '@playwright/test';
+export const test = mergeTests(loginPage, schemaCheck);

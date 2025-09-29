@@ -47,7 +47,7 @@ npm install -D openapi-typescript zod
 ```
 
 ```
-npx openapi-typescript https://petstore3.swagger.io/api/v3/openapi.json  -o src/api/types/petStoreType.d.ts --immutable --root-types true --export-type
+npx openapi-typescript https://petstore3.swagger.io/api/v3/openapi.json  -o src/core/api/types/pet-type.ts --immutable --root-types true --export-type
 ```
 
 Mock data:

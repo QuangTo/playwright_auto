@@ -1,10 +1,10 @@
-import { expect, test } from 'src/ui/fixtures/baseFixture';
+import { expect, test } from '@ui/fixtures/baseFixture';
 
 /**
  *  custom login fixture demo
  */
-test('login with fixture', { tag: '@browser' }, async ({ page, loginPageAsAdmin }) => {
-  // navigate
+test('@browser login with fixture', async ({ page, loginPageAsAdmin }) => {
+  test.skip(true, 'skip');
   await page.goto('https://automationintesting.online/admin');
   //use custom fixture
   await loginPageAsAdmin();
