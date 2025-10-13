@@ -2,18 +2,26 @@
 
 Playwright(typescript) framework to cover API & UI scenario. Leverage with generator some tools. Easy coding
 
-#### TABLE OF CONTENTS
+#### 📁 STRUCTURE
 
-- [Running sample test](#runtest)
-- [Setup Cross env](#environments)
-- [API](#api)
-- [UI](#UI)
-- [Discover reporter](#rerporter)
+```
+ |- config # Configuration
+ |- external # External system interactions e.g. Database
+ |- src
+ |- |- core #
+ |- |- |- api #
+ |- |- |- ui #
+ |- |- |- shared #
+ |- |- setups #
+ |- tests # Here is the magic 🧙‍♂️
+ |- |- ui
+ |- |- api
+```
 
 ### RUN TEST
 
 ```
-npm run test:dev
+npx playwright test
 ```
 
 ### ENVIRONMENTS
@@ -27,11 +35,10 @@ Ability to run cross environments sample here is dev and qa env using dotenv <br
 
 Based on swagger file, we extract and validate api schema.
 
-1. Check api version changes
-2. Generate to ts schema type
+1. Generate to ts schema type
    <!-- 3. Convert to zod schema -->
    <!-- 3. Use mock data base on zod schema || use faker to build data -->
-3. (AI - upcoming) generate happy cases base on schema and endpoint
+2. (cohere-ai) generate test cases base on schema and endpoint
 
 Sample
 
