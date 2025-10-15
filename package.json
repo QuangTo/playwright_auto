@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/tvquangcs/auto_demo.git"
+  },
   "scripts": {
     "test:all": "npx playwright test",
     "test:happy": "npx playwright test --grep=@happy",
+    "test:debug-api": "DEBUG=pw:api npx playwright test --grep=@api",
     "prepare": "husky install"
   },
   "lint-staged": {
@@ -14,10 +19,6 @@
       "npx eslint --fix",
       "npx prettier . --write"
     ]
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://gitlab.com/tvquangcs/auto_demo.git"
   },
   "keywords": [],
   "author": "",
