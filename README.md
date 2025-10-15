@@ -18,26 +18,34 @@ Playwright(typescript) framework to cover API & UI scenario. Leverage with gener
  |- |- api
 ```
 
+### TECH STACK/LIB USED
+
+- Playwright for API, UI, mobile simulator device testing
+- Appium for mobile testing
+- Artillery (or k6) for load testing
+- ESlint for pinpoint issues and guide you in rectifying potential problems TypeScript.
+- Prettier for fortmat coding
+- Dotnet env management
+- Secret for aws loading secret key
+- Typescript for type safe
+- Zod for schema validation
+- openapi-typescript for generator api type
+- Wiston for logging
+- Faker for genarating test data
+- Mocha for worker(optional)
+- Chai for assertion (optional)
+
 ### RUN TEST
 
 ```
 npx playwright test
 ```
 
-### ENVIRONMENTS
-
-Ability to run cross environments sample here is dev and qa env using dotenv <br>
-
-- DEV <br>
-- QA <br>
-
 ### API
 
 Based on swagger file, we extract and validate api schema.
 
 1. Generate to ts schema type
-   <!-- 3. Convert to zod schema -->
-   <!-- 3. Use mock data base on zod schema || use faker to build data -->
 2. (cohere-ai) generate test cases base on schema and endpoint
 
 Sample
