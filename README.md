@@ -1,6 +1,6 @@
-# 🎭 Playwright Automation Demo
+# 🎭 Playwright Automation 🎭
 
-Playwright(typescript) framework to cover API & UI scenario. Leverage with generator some tools. Easy coding
+Scalable, rubost and maintainable testing framework
 
 #### 📁 STRUCTURE
 
