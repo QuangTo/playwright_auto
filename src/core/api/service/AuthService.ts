@@ -1,4 +1,4 @@
-import { APIRequestContext } from '@playwright/test';
+import { APIRequestContext, APIResponse } from '@playwright/test';
 import { BaseService } from './baseService';
 import { createHeaders } from './deafaultHeaders';
 
@@ -13,8 +13,8 @@ export class AuthService extends BaseService {
   private getHeaders(): Record<string, string> {
     return createHeaders();
   }
-  async login(username: string, password: string): Promise<any> {
-    const url = `${this.baseUrl}/auth/login`;
+  async login(username: string, password: string): Promise<APIResponse> {
+    const url = `${this.baseUrl}/api/auth/login`;
     const bodyData = { username, password };
     return this.post(url, { data: bodyData });
   }
