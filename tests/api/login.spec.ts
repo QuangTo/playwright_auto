@@ -1,6 +1,10 @@
 import { test, expect } from '@playwright/test';
 import { AuthService } from '@api/service/AuthService';
 
+/**
+ * Authentication API tests
+ */
+
 test.describe('Authentication', { tag: '@api' }, () => {
   let auth: AuthService;
   test.beforeEach(async ({ request }) => {

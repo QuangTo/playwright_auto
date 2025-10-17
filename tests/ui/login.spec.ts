@@ -1,8 +1,9 @@
 import { expect, test } from '@ui/fixtures/baseFixture';
 
 /**
- *  custom login fixture demo
- *  aria assertion strict matching
+ * showcase UI login test
+ * 1. customize login fixture based on POM
+ * 2. aria assertion strict matching
  */
 test('@browser @happy login with fixture', async ({ page, loginPageAsAdmin }) => {
   await page.goto('https://automationintesting.online/admin');

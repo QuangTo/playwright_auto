@@ -1,5 +1,5 @@
 import { SchemaPet } from '../types/pet-type';
-import { headerFactory } from '../dataFactories';
+import { headerFactory } from '../factories';
 import { APIRequestContext } from '@playwright/test';
 import { InputWrapper } from '../types/input-wrapper';
 
