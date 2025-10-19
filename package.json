@@ -29,7 +29,7 @@
   },
   "homepage": "https://gitlab.com/tvquangcs/auto_demo#readme",
   "devDependencies": {
-    "@playwright/test": "^1.54.0",
+    "@playwright/test": "^1.56.1",
     "@reportportal/agent-js-playwright": "^5.1.9",
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^20.12.7",
