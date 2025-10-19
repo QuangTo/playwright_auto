@@ -11,14 +11,14 @@ jobs:
     name: Run Tests
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.54.0-noble
+      image: mcr.microsoft.com/playwright:v1.56.0-noble
 
     steps:
       - uses: actions/checkout@v4
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          cache: 'npm'
+          cache: "npm"
       - name: Create .env.dev
         run: |
           echo "USERNAME=${{ secrets.USERNAME }}" >> .env.dev
