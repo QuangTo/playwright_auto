@@ -1,11 +1,12 @@
 import { test, expect } from '@playwright/test';
 import { AuthService } from '@api/service/AuthService';
+import { TestTags } from 'tests/config/Tags';
 
 /**
  * Authentication API tests
  */
 
-test.describe('Authentication', { tag: '@api' }, () => {
+test.describe('Authentication', { tag: TestTags.API }, () => {
   let auth: AuthService;
   test.beforeEach(async ({ request }) => {
     const baseUrl = 'https://automationintesting.online';
