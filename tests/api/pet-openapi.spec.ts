@@ -15,7 +15,7 @@ type PetResponse = paths['/pet']['post']['responses']['200']['content']['applica
  */
 
 // use builder
-test.only('@api POST /pet - valid body then receive 200', async ({ request }) => {
+test('@api POST /pet - valid body then receive 200', async ({ request }) => {
   const petRequestPayload = petFactory.petBuilder();
   const res = await request.post(`${baseUrl}/pet`, {
     data: petRequestPayload
