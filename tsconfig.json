@@ -1,16 +1,34 @@
 {
   "compilerOptions": {
-    "target": "ES2021",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "noUncheckedIndexedAccess": true,
-    "baseUrl": ".",
+    /* Base options */
+    "target": "ES2022",
     "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "allowJs": false,
+
+    /*strictness*/
     "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* transpile with swc*/
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": ["esnext"],
+    "noEmit": true,
+    "sourceMap": true,
+
+    /*build app*/
+    "removeComments": true,
+    /*base line*/
+    "baseUrl": ".",
     "paths": {
       "@expects/*": ["src/expects/*"],
       "@ui/*": ["src/core/ui/*"],
       "@api/*": ["src/core/api/*"]
     }
-  }
+  },
+  "include": ["**/*.ts"]
 }

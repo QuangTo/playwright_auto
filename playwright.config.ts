@@ -1,29 +1,10 @@
 import { defineConfig, devices } from '@playwright/test';
-import { config } from 'dotenv';
-import { resolve } from 'path';
-import fs from 'fs';
+import { loadEnvironment } from './load-env';
 
-// config();
-function loadEnvFile() {
-  const envFile = `.env.${process.env.NODE_ENV || 'dev'}`;
-  const envPath = resolve(__dirname, envFile);
-
-  if (fs.existsSync(envPath)) {
-    config({ path: envPath });
-    // console.log(`Loaded environment variables from ${envFile}`);
-  } else {
-    console.error(`Environment file ${envFile} not found`);
-    process.exit(1);
-  }
-}
-
-// Load the environment variables
-loadEnvFile();
 /**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
+ * Load the environment variables
  */
-// require('dotenv').config();
+loadEnvironment();
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -71,7 +52,6 @@ export default defineConfig({
       use: {
         browserName: 'chromium',
         ...devices['Desktop Chrome']
-        // viewport:[]
       }
     },
     {
@@ -82,45 +62,6 @@ export default defineConfig({
         headless: true
       }
     }
-    // {
-    //   name: 'mobile',
-    //   grep: /@mobile/,
-    //   workers: 1,
-    //   use: {
-    //     ...devices['iPhone 13 Pro Max'],
-    //     browserName: 'chromium'
-    //   }
-    // }
-
-    // {
-    //   name: "firefox",
-    //   use: { ...devices["Desktop Firefox"] },
-    // },
-
-    // {
-    //   name: "webkit",
-    //   use: { ...devices["Desktop Safari"] },
-    // },
-
-    /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 5'] },
-    // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: { ...devices['iPhone 12'] },
-    // },
-
-    /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
-    // },
-    // {
-    //   name: 'Google Chrome',
-    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-    // },
   ]
 
   /* Run your local dev server before starting the tests */
