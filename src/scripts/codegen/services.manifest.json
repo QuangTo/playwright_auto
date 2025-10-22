@@ -1,9 +1,9 @@
 {
-    "services": [
-        {
-            "name": "pet",
-            "openapiUrl": "pet.yaml",
-            "type": "Local"
-        }
-    ]
+  "services": [
+    {
+      "name": "pet",
+      "openapiUrl": "pet.yaml",
+      "type": "Local"
+    }
+  ]
 }

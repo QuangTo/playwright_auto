@@ -16,13 +16,13 @@ export default defineConfig({
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 3 : 0,
-  workers: 3,
+  retries: process.env.CI ? 4 : 0,
+  workers: 4,
 
   /* Opt out of parallel tests on CI. */
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [process.env.CI ? ['list'] : ['list', { printSteps: true }], ['html', { noSnippets: true }]],
-
+  reporter: [process.env.CI ? ['blob'] : ['list', { printSteps: true }], ['html', { noSnippets: true }]],
+  // reporter: process.env.CI ? 'blob' : 'html',
   // ["@reportportal/agent-js-playwright", RPconfig],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
