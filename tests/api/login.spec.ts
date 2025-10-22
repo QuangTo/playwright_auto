@@ -25,7 +25,7 @@ test.describe('Authentication', { tag: TestTags.API }, () => {
     expect(response.status()).toBe(401);
   });
   test('Send POST with invalid username& password', async () => {
-    const response = auth.login('admin', 'incorrectPassword');
+    const response = await auth.login('admin', 'incorrectPassword');
     expect(response.status()).toBe(401);
   });
   test('Send POST with no username no password', async () => {
