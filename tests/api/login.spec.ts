@@ -12,6 +12,8 @@ test.describe('Authentication', { tag: TestTags.API }, () => {
     const baseUrl = 'https://automationintesting.online';
     auth = new AuthService(request, baseUrl);
   });
+  test.describe.configure({ mode: 'parallel' });
+
   test('Send POST with valid credential @happy', async () => {
     const response = await auth.login('admin', 'password');
     expect(response.status()).toBe(200);

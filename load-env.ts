@@ -8,7 +8,6 @@ export function loadEnvironment() {
 
   if (fs.existsSync(envPath)) {
     config({ path: envPath });
-    console.log(`✅ Loaded .env.${env}`);
   } else {
     console.warn(`⚠️  Missing .env.${env}`);
   }
