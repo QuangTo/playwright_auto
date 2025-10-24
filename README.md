@@ -1,6 +1,7 @@
 # 🎭 Playwright Automation 🎭
 
-Scalable, rubost and maintainable testing framework
+- Scalable, rubost and maintainable testing framework
+- Apply diamon test model
 
 #### 📁 STRUCTURE
 
@@ -32,8 +33,6 @@ Scalable, rubost and maintainable testing framework
 - openapi-typescript for generator api type
 - Wiston for logging
 - Faker for genarating test data
-- Mocha for worker(optional)
-- Chai for assertion (optional)
 
 ### RUN TEST
 

@@ -1,1 +1,1 @@
-export * as randomUtils from './random-utlis';
+export * as randomUtlis from './random-utlis';

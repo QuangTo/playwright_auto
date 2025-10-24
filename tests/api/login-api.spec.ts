@@ -1,6 +1,6 @@
-import { test, expect } from '@playwright/test';
-import { AuthService } from '@api/service/AuthService';
 import { TestTags } from 'tests/config/Tags';
+import { test, expect } from '@playwright/test';
+import { AuthService } from '@api/services/authService';
 
 /**
  * Authentication API tests
