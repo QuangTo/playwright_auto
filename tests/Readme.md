@@ -14,7 +14,7 @@
 │   ├── profile-payment/
 │   │   └── profile-payment.spec.ts
 │
-├── smokes/
+├── regressions/
 │   └── user-profile-payment.spec.ts
 
 ```
