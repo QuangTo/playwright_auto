@@ -13,13 +13,14 @@
  |- |- |- api #
  |- |- |- ui #
  |- |- |- shared #
- |- |- setups #
+ |- |- setups # auth, report, browser, worker ..etc
  |- tests # Here is the magic 🧙‍♂️
  |- |- ui
  |- |- api
+ |- |- db
 ```
 
-### TECH STACK/LIB USED
+### 🧱 ECH STACK/LIB USED
 
 - Playwright for API, UI, mobile simulator device testing
 - Appium for mobile testing
@@ -34,57 +35,45 @@
 - Wiston for logging
 - Faker for genarating test data
 
-### RUN TEST
+### 🧪 RUN TEST
+
+- Run all test
 
 ```
-npx playwright test
+npm run test:all
 ```
 
-### API
-
-Based on swagger file, we extract and validate api schema.
-
-1. Generate to ts schema type
-2. (cohere-ai) generate test cases base on schema and endpoint
-
-Sample
+- Run api
 
 ```
-OpenAPI 3():
-https://petstore31.swagger.io/api/v3/openapi.json
+npm run test:api
 ```
 
-Install
+- Run happy cases
 
 ```
-npm install -D openapi-typescript zod
+npm run test:happy
 ```
 
-```
-npx openapi-typescript https://petstore3.swagger.io/api/v3/openapi.json  -o src/core/api/types/pet-type.ts --immutable --root-types true --export-type
-```
-
-Mock data:
+- Generate swagger to api type
 
 ```
-@anatine/zod-mock
+npm run generated-api
 ```
 
-<!-- Generated FullAPIClient
+- Generate folder index
 
 ```
-@moznion/openapi-fetch-gen
-npx openapi-fetch-gen -i src/api/Schema/openApiType.d.ts -o src/api/Schema/generatedClient.ts
-``` -->
+npm run index-generated
+```
 
-#### UI
+### 🚀 CI/CD
 
-- POM, Builder, Page Factory pattern
-- Custom fixture, fixtures for local and workers
-- Showcase with worker, devices, paralell mode (playwright.config.ts)
-- Faker data
+- Parallel test execution use shard test maxtrix
+- Blod report
+- Cross-brower
 
-#### RERPORTER
+### 📊 RERPORTER
 
 playwright html default
 
