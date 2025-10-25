@@ -15,10 +15,10 @@
 ## - Uses json-file logging driver with rotation
 ##
 x-logging: &logging
-  driver: "json-file"
+  driver: 'json-file'
   options:
     max-size: 100m
-    max-file: "5"
+    max-file: '5'
 
 ## @section Database configuration
 ## @param x-database Shared database connection settings used across services
@@ -104,8 +104,8 @@ services:
     logging:
       <<: *logging
     ports:
-      - "8080:8080" ## ReportPortal UI
-      - "8081:8081" ## Traefik dashboard
+      - '8080:8080' ## ReportPortal UI
+      - '8081:8081' ## Traefik dashboard
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     command:
@@ -116,11 +116,7 @@ services:
       - --api.dashboard=true
       - --api.insecure=true
     healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          "curl -f http://localhost:8081/api/http/routers || wget -q --spider http://localhost:8081/api/http/routers || exit 1",
-        ]
+      test: ['CMD-SHELL', 'curl -f http://localhost:8081/api/http/routers || wget -q --spider http://localhost:8081/api/http/routers || exit 1']
       interval: 30s
       timeout: 10s
       retries: 3
@@ -131,7 +127,7 @@ services:
     profiles:
       - core
       - infra
-      - ""
+      - ''
 
   ## @param postgres Database service used by ReportPortal
   ## - Stores metadata and user/test results
@@ -143,7 +139,7 @@ services:
     container_name: *db_host
     logging:
       <<: *logging
-    shm_size: "512m"
+    shm_size: '512m'
     environment:
       POSTGRES_USER: *db_user
       POSTGRES_PASSWORD: *db_password
@@ -154,7 +150,7 @@ services:
     # ports:
     #   - "5432:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -d $$POSTGRES_DB -U $$POSTGRES_USER"]
+      test: ['CMD-SHELL', 'pg_isready -d $$POSTGRES_DB -U $$POSTGRES_USER']
       interval: 10s
       timeout: 120s
       retries: 10
@@ -164,7 +160,7 @@ services:
     profiles:
       - core
       - infra
-      - ""
+      - ''
 
   ## @param rabbitmq Asynchronous message broker for inter-service communication
   ## - Provides queues used in analysis and background jobs
@@ -182,7 +178,7 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: *rabbitmq_user
       RABBITMQ_DEFAULT_PASS: *rabbitmq_password
-      RABBITMQ_MANAGEMENT_ALLOW_WEB_ACCESS: "true"
+      RABBITMQ_MANAGEMENT_ALLOW_WEB_ACCESS: 'true'
       ## Block all procedures when free disk space is less than 50MB
       ## Ref: https://www.rabbitmq.com/docs/disk-alarms
       RABBITMQ_DISK_FREE_ABSOLUTE_LIMIT: 50MB
@@ -193,7 +189,7 @@ services:
         rabbitmq_shovel
         rabbitmq_shovel_management
     healthcheck:
-      test: ["CMD", "rabbitmqctl", "status"]
+      test: ['CMD', 'rabbitmqctl', 'status']
       interval: 30s
       timeout: 30s
       retries: 5
@@ -204,7 +200,7 @@ services:
     profiles:
       - core
       - infra
-      - ""
+      - ''
 
   ## @param opensearch Search and analytics engine for the analyzer stack
   ## - Used to store and query indexed test logs
@@ -216,10 +212,10 @@ services:
       <<: *logging
     environment:
       discovery.type: single-node
-      plugins.security.disabled: "true"
-      bootstrap.memory_lock: "true"
+      plugins.security.disabled: 'true'
+      bootstrap.memory_lock: 'true'
       OPENSEARCH_JAVA_OPTS: -Xms512m -Xmx512m
-      DISABLE_INSTALL_DEMO_CONFIG: "true"
+      DISABLE_INSTALL_DEMO_CONFIG: 'true'
       ## @env _JAVA_OPTIONS required to run OpenSearch on Apple Silicon
       # _JAVA_OPTIONS: "-XX:UseSVE=0"
     ulimits:
@@ -234,11 +230,7 @@ services:
     volumes:
       - opensearch:/usr/share/opensearch/data
     healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          "curl -s -f http://localhost:9200/_cluster/health | grep -q '\"status\":\"green\"\\|\"status\":\"yellow\"'",
-        ]
+      test: ['CMD-SHELL', "curl -s -f http://localhost:9200/_cluster/health | grep -q '\"status\":\"green\"\\|\"status\":\"yellow\"'"]
       interval: 30s
       timeout: 10s
       retries: 5
@@ -247,7 +239,7 @@ services:
       - reportportal
     restart: always
     profiles:
-      - ""
+      - ''
 
   ##
   ## @section ReportPortal Core Services
@@ -277,7 +269,7 @@ services:
     profiles:
       - core
       - infra
-      - ""
+      - ''
 
   ## @param index Service for indexing test data and logs
   ## - Listens for incoming test results and logs
@@ -293,30 +285,26 @@ services:
         condition: service_started
     environment:
       LB_URL: http://gateway:8081
-      TRAEFIK_V2_MODE: "true"
+      TRAEFIK_V2_MODE: 'true'
     healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          "curl -f http://localhost:8080/health || wget -q --spider http://localhost:8080/health || exit 1",
-        ]
+      test: ['CMD-SHELL', 'curl -f http://localhost:8080/health || wget -q --spider http://localhost:8080/health || exit 1']
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 30s
     labels:
-      - "traefik.http.routers.index.rule=PathPrefix(`/`)"
-      - "traefik.http.routers.index.service=index"
-      - "traefik.http.services.index.loadbalancer.server.port=8080"
-      - "traefik.http.services.index.loadbalancer.server.scheme=http"
-      - "traefik.expose=true"
+      - 'traefik.http.routers.index.rule=PathPrefix(`/`)'
+      - 'traefik.http.routers.index.service=index'
+      - 'traefik.http.services.index.loadbalancer.server.port=8080'
+      - 'traefik.http.services.index.loadbalancer.server.scheme=http'
+      - 'traefik.expose=true'
     networks:
       - reportportal
     restart: always
     profiles:
       - core
       - infra
-      - ""
+      - ''
 
   ## @param ui Web-based frontend for ReportPortal
   ## - Provides the visual interface for test reports
@@ -327,31 +315,27 @@ services:
     image: ${UI_IMAGE-reportportal/service-ui:5.14.5}
     build: ./service-ui
     environment:
-      RP_SERVER_PORT: "8080"
+      RP_SERVER_PORT: '8080'
     healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          "curl -f http://localhost:8080/health || wget -q --spider http://localhost:8080/health || exit 1",
-        ]
+      test: ['CMD-SHELL', 'curl -f http://localhost:8080/health || wget -q --spider http://localhost:8080/health || exit 1']
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 30s
     labels:
-      - "traefik.http.middlewares.ui-strip-prefix.stripprefix.prefixes=/ui"
-      - "traefik.http.routers.ui.middlewares=ui-strip-prefix@docker"
-      - "traefik.http.routers.ui.rule=PathPrefix(`/ui`)"
-      - "traefik.http.routers.ui.service=ui"
-      - "traefik.http.services.ui.loadbalancer.server.port=8080"
-      - "traefik.http.services.ui.loadbalancer.server.scheme=http"
-      - "traefik.expose=true"
+      - 'traefik.http.middlewares.ui-strip-prefix.stripprefix.prefixes=/ui'
+      - 'traefik.http.routers.ui.middlewares=ui-strip-prefix@docker'
+      - 'traefik.http.routers.ui.rule=PathPrefix(`/ui`)'
+      - 'traefik.http.routers.ui.service=ui'
+      - 'traefik.http.services.ui.loadbalancer.server.port=8080'
+      - 'traefik.http.services.ui.loadbalancer.server.scheme=http'
+      - 'traefik.expose=true'
     networks:
       - reportportal
     restart: always
     profiles:
       - core
-      - ""
+      - ''
 
   ## @param api ReportPortal backend API service
   ## - Hosts core business logic and background processing
@@ -374,10 +358,10 @@ services:
     environment:
       <<: *common-environment
       LOGGING_LEVEL_ORG_HIBERNATE_SQL: info
-      RP_REQUESTLOGGING: "false"
-      AUDIT_LOGGER: "OFF"
-      MANAGEMENT_HEALTH_ELASTICSEARCH_ENABLED: "false"
-      RP_ENVIRONMENT_VARIABLE_ALLOW_DELETE_ACCOUNT: "false"
+      RP_REQUESTLOGGING: 'false'
+      AUDIT_LOGGER: 'OFF'
+      MANAGEMENT_HEALTH_ELASTICSEARCH_ENABLED: 'false'
+      RP_ENVIRONMENT_VARIABLE_ALLOW_DELETE_ACCOUNT: 'false'
       JAVA_OPTS: >
         -Xmx1g 
         -XX:+HeapDumpOnOutOfMemoryError 
@@ -402,29 +386,25 @@ services:
     volumes:
       - storage:/data/storage
     healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          "curl -f http://localhost:8585/health || wget -q --spider http://localhost:8585/health || exit 1",
-        ]
+      test: ['CMD-SHELL', 'curl -f http://localhost:8585/health || wget -q --spider http://localhost:8585/health || exit 1']
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 60s
     labels:
-      - "traefik.http.middlewares.api-strip-prefix.stripprefix.prefixes=/api"
-      - "traefik.http.routers.api.middlewares=api-strip-prefix@docker"
-      - "traefik.http.routers.api.rule=PathPrefix(`/api`)"
-      - "traefik.http.routers.api.service=api"
-      - "traefik.http.services.api.loadbalancer.server.port=8585"
-      - "traefik.http.services.api.loadbalancer.server.scheme=http"
-      - "traefik.expose=true"
+      - 'traefik.http.middlewares.api-strip-prefix.stripprefix.prefixes=/api'
+      - 'traefik.http.routers.api.middlewares=api-strip-prefix@docker'
+      - 'traefik.http.routers.api.rule=PathPrefix(`/api`)'
+      - 'traefik.http.routers.api.service=api'
+      - 'traefik.http.services.api.loadbalancer.server.port=8585'
+      - 'traefik.http.services.api.loadbalancer.server.scheme=http'
+      - 'traefik.expose=true'
     networks:
       - reportportal
     restart: always
     profiles:
       - core
-      - ""
+      - ''
 
   ## @param uat Authorization and authentication service
   ## - Manages login, session lifecycle, and token issuance
@@ -449,23 +429,19 @@ services:
     volumes:
       - storage:/data/storage
     healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          "curl -f http://localhost:9999/health || wget -q --spider http://localhost:9999/health || exit 1",
-        ]
+      test: ['CMD-SHELL', 'curl -f http://localhost:9999/health || wget -q --spider http://localhost:9999/health || exit 1']
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 60s
     labels:
-      - "traefik.http.middlewares.uat-strip-prefix.stripprefix.prefixes=/uat"
-      - "traefik.http.routers.uat.middlewares=uat-strip-prefix@docker"
-      - "traefik.http.routers.uat.rule=PathPrefix(`/uat`)"
-      - "traefik.http.routers.uat.service=uat"
-      - "traefik.http.services.uat.loadbalancer.server.port=9999"
-      - "traefik.http.services.uat.loadbalancer.server.scheme=http"
-      - "traefik.expose=true"
+      - 'traefik.http.middlewares.uat-strip-prefix.stripprefix.prefixes=/uat'
+      - 'traefik.http.routers.uat.middlewares=uat-strip-prefix@docker'
+      - 'traefik.http.routers.uat.rule=PathPrefix(`/uat`)'
+      - 'traefik.http.routers.uat.service=uat'
+      - 'traefik.http.services.uat.loadbalancer.server.port=9999'
+      - 'traefik.http.services.uat.loadbalancer.server.scheme=http'
+      - 'traefik.expose=true'
     depends_on:
       postgres:
         condition: service_healthy
@@ -474,7 +450,7 @@ services:
     restart: always
     profiles:
       - core
-      - ""
+      - ''
 
   ## @param jobs Scheduled job processor for ReportPortal
   ## - Executes cleanup, notification, and cron-based background tasks
@@ -522,11 +498,7 @@ services:
     volumes:
       - storage:/data/storage
     healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          "curl -f http://localhost:8686/health || wget -q --spider http://localhost:8686/health || exit 1",
-        ]
+      test: ['CMD-SHELL', 'curl -f http://localhost:8686/health || wget -q --spider http://localhost:8686/health || exit 1']
       interval: 30s
       timeout: 10s
       retries: 3
@@ -544,7 +516,7 @@ services:
     restart: always
     profiles:
       - core
-      - ""
+      - ''
 
   ## @section Analyzer stack
   ## Analyzer services (optional): auto-analysis and ML training
@@ -566,11 +538,7 @@ services:
     volumes:
       - storage:/backend/storage
     healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          "curl -f http://localhost:5001 || wget -q --spider http://localhost:5001/ || exit 1",
-        ]
+      test: ['CMD-SHELL', 'curl -f http://localhost:5001 || wget -q --spider http://localhost:5001/ || exit 1']
       interval: 30s
       timeout: 10s
       retries: 3
@@ -584,7 +552,7 @@ services:
       - reportportal
     restart: always
     profiles:
-      - ""
+      - ''
 
 ## @section Volumes
 ## Named volumes for persistent data storage

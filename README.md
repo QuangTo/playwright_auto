@@ -86,6 +86,17 @@ npx openapi-fetch-gen -i src/api/Schema/openApiType.d.ts -o src/api/Schema/gener
 
 #### RERPORTER
 
+playwright html default
+
 ```
 npx playwright show-report
+```
+
+For using report-portal
+
+```
+ Update reporter on playwright.config.ts file
+ Run docker-compose -p reportportal up -d --force-recreate
+ Open localhost port :8080
+ Credential : superadmin - erebus
 ```
