@@ -1,7 +1,8 @@
 # 🎭 Playwright Automation 🎭
 
 - Scalable, rubost and maintainable testing framework
-- Apply diamon test model
+- Pyramid testing model
+- Focus on integration level aim to test regression & smoke
 
 #### 📁 STRUCTURE
 
@@ -18,9 +19,10 @@
  |- |- ui
  |- |- api
  |- |- db
+ |- project config
 ```
 
-### 🧱 ECH STACK/LIB USED
+### 🧱 TECH STACK/LIB USED
 
 - Playwright for API, UI, mobile simulator device testing
 - Appium for mobile testing
@@ -36,6 +38,8 @@
 - Faker for genarating test data
 
 ### 🧪 RUN TEST
+
+(Test are now run success without env file)
 
 - Run all test
 
@@ -61,7 +65,7 @@ npm run test:happy
 npm run generated-api
 ```
 
-- Generate folder index
+- Generate index folder
 
 ```
 npm run index-generated
@@ -70,22 +74,22 @@ npm run index-generated
 ### 🚀 CI/CD
 
 - Parallel test execution use shard test maxtrix
-- Blod report
+- Blod report (shard and merge report)
 - Cross-brower
+- Easy setup, test with pipline (s3,azure)
 
 ### 📊 RERPORTER
 
-playwright html default
+default html
 
 ```
 npx playwright show-report
 ```
 
-For using report-portal
+report-portal docker
 
-```
- Update reporter on playwright.config.ts file
- Run docker-compose -p reportportal up -d --force-recreate
- Open localhost port :8080
- Credential : superadmin - erebus
-```
+- Run docker-compose -p reportportal up -d --force-recreate
+- Open localhost port :8080
+- Login with credential : superadmin - erebus
+- Update RP info on src/setup/report/RPconfig.ts (apiKey,endpoint)
+- Update reporter on playwright.config.ts file
