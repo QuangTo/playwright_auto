@@ -36,6 +36,10 @@
 - openapi-typescript for generator api type
 - Wiston for logging
 - Faker for genarating test data
+### SETUP
+```
+npm i
+```
 
 ### 🧪 RUN TEST
 
