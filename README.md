@@ -34,6 +34,7 @@
 - openapi-typescript for generator api type
 - Wiston for logging
 - Faker for genarating test data
+- RenovateBot for auto update dependencies/lib
 
 ### 🏗️DESIGN PATTERN
 
