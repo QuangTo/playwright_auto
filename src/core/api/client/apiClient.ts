@@ -1,5 +1,5 @@
 import { createHeaders } from './defaultHeaders';
-import { Logger } from '../utils/logger/logger';
+import { APILogger } from '../utils/logger/logger';
 import { generateCurl } from '../utils/logger/generateCurl';
 import { APIRequestContext, APIResponse } from '@playwright/test';
 
@@ -19,18 +19,17 @@ export class ApiClient {
 
     const curlCommand = generateCurl(method, url, options.data, fullHeaders);
 
-    try {
-      const response = await this.apiRequest.fetch(url, {
+    const response = await this.apiRequest
+      .fetch(url, {
         method,
         headers: fullHeaders,
         data: options.data
+      })
+      .catch((error) => {
+        throw APILogger.logError(error, { method, url, curl: curlCommand });
       });
-      Logger.logInfo(`${method} ${url} -> ${response.status()}`);
-      return response;
-    } catch (error) {
-      Logger.logCurlCommand(`ERROR: ${error}\n ${curlCommand}`);
-      throw error;
-    }
+    await APILogger.logApiResponse(response, { method, url, curl: curlCommand });
+    return response;
   }
 
   async get(url: string, options: { headers?: Record<string, string>; data?: any } = {}): Promise<APIResponse> {

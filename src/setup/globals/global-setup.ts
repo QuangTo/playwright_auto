@@ -1,6 +1,6 @@
 import { request } from '@playwright/test';
 import type { APIResponse } from '@playwright/test';
-import { Logger } from '../../core/api/utils/logger/logger';
+import { APILogger } from '../../core/api/utils/logger/logger';
 import { generateCurl } from '../../core/api/utils/logger/generateCurl';
 
 async function globalSetup() {
