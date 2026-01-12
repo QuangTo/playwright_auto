@@ -1,7 +1,7 @@
-import * as Types from '../types/pet-type';
 import { ApiClient } from '@api/client/apiClient';
-import { InputWrapper } from '../types/input-wrapper';
 import { APIRequestContext, APIResponse } from '@playwright/test';
+import * as Types from '../types/pet-type';
+import { InputWrapper } from '../types/input-wrapper';
 
 export class PetService extends ApiClient {
   protected baseUrl: string;

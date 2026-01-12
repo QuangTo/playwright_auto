@@ -44,7 +44,7 @@ async function generateServices() {
     code += `  }\n\n`;
 
     // Efficiently extract the paths block
-    const pathsBlockMatch = content.match(/export type paths = {([\s\S]*?)^};/m);
+    const pathsBlockMatch = content.match(/export type paths = {([\s\S]*?)\n};/);
     if (!pathsBlockMatch || !pathsBlockMatch[1]) {
       console.warn(`Could not find 'paths' type in ${typeFileName}`);
       continue;
@@ -52,7 +52,8 @@ async function generateServices() {
     const pathsBlock = pathsBlockMatch[1];
 
     // Split by route definitions to get individual route blocks
-    const routeSegments = pathsBlock.split(/readonly\s+"(\/[^"]+)":\s*{/g);
+    const routeSegments = pathsBlock.split(/readonly\s+['"](\/[^'"]+)['"]:\s+{/g);
+    console.log(`  Found ${Math.floor(routeSegments.length / 2)} routes`);
 
     for (let i = 1; i < routeSegments.length; i += 2) {
       const route = routeSegments[i];
@@ -61,13 +62,14 @@ async function generateServices() {
       if (!route || !routeBlock) continue;
 
       // Regex to find methods within this route block
-      const methodRegex = /readonly\s+(get|post|put|delete|patch):\s+operations\["([^"]+)"\];/g;
+      const methodRegex = /readonly\s+(get|post|put|delete|patch):\s+operations\[['"]([^'"]+)['"]\];/g;
 
       let methodMatch;
       while ((methodMatch = methodRegex.exec(routeBlock)) !== null) {
         const method = methodMatch[1];
         const operationId = methodMatch[2];
         if (!method || !operationId) continue;
+        console.log(`    - Found operation: ${operationId} [${method.toUpperCase()}]`);
 
         const methodName = operationId.charAt(0).toLowerCase() + operationId.slice(1);
 

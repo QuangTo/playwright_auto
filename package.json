@@ -10,6 +10,7 @@
   "scripts": {
     "generated-api-type": "npx tsx src/scripts/codegen/openapi-generator.ts",
     "generated-service": "npx tsx src/scripts/codegen/service-generator.ts",
+    "generated-factory": "npx tsx src/scripts/codegen/factory-generator.ts",
     "index-generated": "npx tsx src/scripts/index-generator.ts",
     "test:all": "npx playwright test",
     "test:happy": "npx playwright test --grep=@happy",
