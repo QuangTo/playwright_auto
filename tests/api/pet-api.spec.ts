@@ -23,7 +23,7 @@ test.fixme('@api POST /pet - valid body then receive 200', async ({ request }) =
   const petService = new PetService(request, baseUrl);
   const petRequestPayload = petFactory.petBuilder();
 
-  const res = await petService.createPet(petFactory.petBuilder());
+  const res = await petService.addPet(petFactory.petBuilder());
   const resBody = await res.json();
   const responseData: PetResponse = resBody;
   expect(res.status()).toBe(200);
