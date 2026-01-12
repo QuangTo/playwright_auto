@@ -1,137 +1,59 @@
-import { APILogger } from '../utils/logger/apiLogger';
+import { createHeaders } from './defaultHeaders';
+import { Logger } from '../utils/logger/logger';
 import { generateCurl } from '../utils/logger/generateCurl';
 import { APIRequestContext, APIResponse } from '@playwright/test';
 
-export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
-
-const METHOD_MAP: Record<HttpMethod, 'get' | 'post' | 'put' | 'patch' | 'delete'> = {
-  GET: 'get',
-  POST: 'post',
-  PUT: 'put',
-  PATCH: 'patch',
-  DELETE: 'delete'
-};
-
-export interface ApiClientOptions {
-  timeout?: number;
-  maxRetries?: number;
-}
-
-export interface RequestOptions {
-  data?: any;
-  params?: Record<string, any>;
-  headers?: Record<string, string>;
-  timeout?: number;
-  expectedStatus?: number | number[];
-  rawResponse?: boolean;
-}
-
-const DEFAULT_OPTIONS: ApiClientOptions = {
-  timeout: 10000,
-  maxRetries: 2
-};
+type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'QUERY';
 
 export class ApiClient {
-  private defaultHeaders: Record<string, string> = {
-    'Content-Type': 'application/json',
-    Accept: 'application/json'
-  };
+  protected apiRequest: APIRequestContext;
+  protected headers: Record<string, string>;
 
-  constructor(
-    private request: APIRequestContext,
-    private defaultOptions: ApiClientOptions = DEFAULT_OPTIONS
-  ) {}
+  constructor(apiRequest: APIRequestContext) {
+    this.apiRequest = apiRequest;
+    this.headers = createHeaders();
+  }
 
-  async makeApiRequest<T>(method: HttpMethod, url: string, options: RequestOptions = {}): Promise<T | APIResponse> {
-    const fullHeaders = { ...this.defaultHeaders, ...options.headers };
-    const start = Date.now();
+  private async makeRequest(method: HttpMethod, url: string, options: { headers?: Record<string, string>; data?: any } = {}): Promise<APIResponse> {
+    const fullHeaders = { ...this.headers, ...options.headers };
 
-    const curl = generateCurl(method, url, options.data, fullHeaders);
+    const curlCommand = generateCurl(method, url, options.data, fullHeaders);
 
     try {
-      const response = await this.request[METHOD_MAP[method]](url, {
-        data: options.data,
-        params: options.params,
+      const response = await this.apiRequest.fetch(url, {
+        method,
         headers: fullHeaders,
-        timeout: options.timeout ?? this.defaultOptions.timeout,
-        maxRetries: this.defaultOptions.maxRetries
+        data: options.data
       });
-
-      const durationMs = Date.now() - start;
-      const status = response.status();
-
-      // Log slow requests
-      if (durationMs > 5000) {
-        APILogger.warn({ url, method, durationMs }, 'SLOW_API_RESPONSE');
-      }
-
-      APILogger.info({ method, url, status, durationMs: `${durationMs}ms`, curl }, 'API_CALL');
-
-      // Return raw response if requested
-      if (options.rawResponse) {
-        return response;
-      }
-
-      // Parse body safely
-      let body: any;
-      try {
-        body = await response.json();
-      } catch (e) {
-        // Fallback to text if JSON parsing fails
-        body = await response.text().catch(() => 'NOT_PARSABLE');
-        // Only warn if we expected JSON (based on content-type or default) but got something else
-        // ignoring empty bodies for 204 No Content
-        if (status !== 204) {
-          APILogger.warn({ status, body }, 'NON_JSON_RESPONSE');
-        }
-      }
-
-      // Validate Status Code
-      if (!this.isStatusExpected(status, options.expectedStatus)) {
-        const errMsg = `Request failed: ${method} ${url} → ${status}\nBody: ${JSON.stringify(body, null, 2)}`;
-        APILogger.error({ status, body, curl, durationMs }, errMsg);
-        throw new Error(errMsg);
-      }
-
-      return body as T;
-    } catch (err: any) {
-      // If it hasn't been logged yet (unexpected network error etc)
-      APILogger.error({ url, method, curl, error: err?.message ?? err }, 'API_REQUEST_FAILED');
-      throw err;
+      Logger.logInfo(`${method} ${url} -> ${response.status()}`);
+      return response;
+    } catch (error) {
+      Logger.logCurlCommand(`ERROR: ${error}\n ${curlCommand}`);
+      throw error;
     }
   }
 
-  // --- Convenience Methods ---
-
-  async get<T>(url: string, options?: Omit<RequestOptions, 'data'>): Promise<T> {
-    return this.makeApiRequest<T>('GET', url, options) as Promise<T>;
+  async get(url: string, options: { headers?: Record<string, string>; data?: any } = {}): Promise<APIResponse> {
+    return this.makeRequest('GET', url, options);
   }
 
-  async post<T>(url: string, data?: any, options?: Omit<RequestOptions, 'data'>): Promise<T> {
-    return this.makeApiRequest<T>('POST', url, { ...options, data }) as Promise<T>;
+  async post(url: string, options: { headers?: Record<string, string>; data?: any } = {}): Promise<APIResponse> {
+    return this.makeRequest('POST', url, options);
   }
 
-  async put<T>(url: string, data?: any, options?: Omit<RequestOptions, 'data'>): Promise<T> {
-    return this.makeApiRequest<T>('PUT', url, { ...options, data }) as Promise<T>;
+  async put(url: string, options: { headers?: Record<string, string>; data?: any } = {}): Promise<APIResponse> {
+    return this.makeRequest('PUT', url, options);
   }
 
-  async patch<T>(url: string, data?: any, options?: Omit<RequestOptions, 'data'>): Promise<T> {
-    return this.makeApiRequest<T>('PATCH', url, { ...options, data }) as Promise<T>;
+  async patch(url: string, options: { headers?: Record<string, string>; data?: any } = {}): Promise<APIResponse> {
+    return this.makeRequest('PATCH', url, options);
   }
 
-  async delete<T>(url: string, options?: RequestOptions): Promise<T> {
-    return this.makeApiRequest<T>('DELETE', url, options) as Promise<T>;
+  async delete(url: string, options: { headers?: Record<string, string>; data?: any } = {}): Promise<APIResponse> {
+    return this.makeRequest('DELETE', url, options);
   }
 
-  // --- Helper ---
-
-  private isStatusExpected(status: number, expected?: number | number[]): boolean {
-    if (expected === undefined) {
-      return status >= 200 && status < 300;
-    }
-    if (Array.isArray(expected)) {
-      return expected.includes(status);
-    }
-    return status === expected;
+  async query(url: string, options: { headers?: Record<string, string>; data?: any } = {}): Promise<APIResponse> {
+    return this.makeRequest('QUERY', url, options);
   }
 }

@@ -1,8 +1,7 @@
+import { ApiClient } from '@api/client/apiClient';
 import { APIRequestContext, APIResponse } from '@playwright/test';
-import { BaseService } from './baseService';
-import { createHeaders } from './deafaultHeaders';
 
-export class AuthService extends BaseService {
+export class AuthService extends ApiClient {
   protected baseUrl: string;
 
   constructor(apiRequest: APIRequestContext, baseUrl: string) {
@@ -10,30 +9,21 @@ export class AuthService extends BaseService {
     this.baseUrl = baseUrl;
   }
 
-  private getHeaders(): Record<string, string> {
-    return createHeaders();
-  }
   async login(username: string, password: string): Promise<APIResponse> {
     const url = `${this.baseUrl}/api/auth/login`;
     const bodyData = { username, password };
     return this.post(url, { data: bodyData });
   }
 
-  //   async refreshToken(refreshToken: string): Promise<any> {
-  //     const url = `${this.baseUrl}/refresh-token`;
-  //     const bodyData = { refreshToken };
-  //     const headers = { "Content-Type": "application/json" };
+  // async refreshToken(refreshToken: string): Promise<APIResponse> {
+  //   const url = `${this.baseUrl}/refresh-token`;
+  //   return this.post(url, { data: { refreshToken } });
+  // }
 
-  //     return this.post(url, headers, bodyData);
-  //   }
-
-  //   async logout(token: string): Promise<any> {
-  //     const url = `${this.baseUrl}/logout`;
-  //     const headers = {
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${token}`,
-  //     };
-
-  //     return this.post(url, headers, {});
-  //   }
+  // async logout(token: string): Promise<APIResponse> {
+  //   const url = `${this.baseUrl}/logout`;
+  //   return this.post(url, {
+  //     headers: { Authorization: `Bearer ${token}` }
+  //   });
+  // }
 }
