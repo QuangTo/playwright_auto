@@ -1,5 +1,5 @@
 import { TestTags } from 'tests/config/Tags';
-import { test, expect } from '@api/fixtures/apiFixture';
+import { test, expect } from '@api/fixtures/apiRequestFixture';
 
 /**
  * Authentication API tests
