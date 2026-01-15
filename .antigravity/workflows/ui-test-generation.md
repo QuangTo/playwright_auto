@@ -1,3 +1,7 @@
+---
+description: Standard operating procedure for generating UI tests using Page Object Model
+---
+
 # AI Prompt: UI Test Case Generation
 
 Use this prompt when generating new Playwright UI tests. It ensures adherence to the **Page Object Model (POM)**, **Fixtures**, and **Atomic Testing** principles.

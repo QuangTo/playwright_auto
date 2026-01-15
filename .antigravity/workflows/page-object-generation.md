@@ -1,3 +1,7 @@
+---
+description: Guidelines for creating robust Page Object classes with proper encapsulation
+---
+
 # AI Prompt: Page Object Generation
 
 Use this prompt when creating or updating Page Objects. It ensures we produce robust, reusable, and self-contained UI abstractions.

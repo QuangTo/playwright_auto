@@ -67,6 +67,6 @@ const petData = PetBuilder.valid().withName('Fluffy').build();
 ## 🤖 AI Workflow Map
 When generating code, refer to these specific guides:
 
-*   **API Tests:** `.agent/workflows/api-test-generation.md`
-*   **UI Tests:** `.agent/workflows/ui-test-generation.md`
-*   **Page Objects:** `.agent/workflows/page-object-generation.md`
+*   **API Tests:** `.antigravity/workflows/api-test-generation.md`
+*   **UI Tests:** `.antigravity/workflows/ui-test-generation.md`
+*   **Page Objects:** `.antigravity/workflows/page-object-generation.md`
