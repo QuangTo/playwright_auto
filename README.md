@@ -7,17 +7,19 @@
 ### 📁PROJECT STRUCTURE
 
 ```
- |- config # Configuration
  |- external # External system interactions e.g. Database
+ |- .antigravity # AI generator test cases
  |- src
  |- |- core #
  |- |- |- api #
  |- |- |- ui #
- |- |- |- shared #
+ |- |- |- shared # common utils, data
+ |- |- |- scripts # define generator flow. can done manual or levarage by ai
  |- |- setups #
  |- tests # Here is the magic 🧙‍♂️
  |- |- ui
  |- |- api
+ |- config # Project Configuration
 ```
 
 ### 🧩TECH STACK/LIB
@@ -32,17 +34,15 @@
 - Typescript for type safe
 - Zod for schema validation
 - openapi-typescript for generator api type
-- Wiston for logging
+- Wiston for logging 
 - Faker for genarating test data
 - RenovateBot for auto update dependencies/lib
 
 ### 🏗️DESIGN PATTERN
 
-- Page object model & components object model for UI
-- Service api layer
+- Page object model, page factory pattern for UI
+- Service api layer, builder data pattern
 - Fixture, custom fixture for local and ci
-- Builder data pattern
-- Factory object pattern
 
 ### 🧪RUN TEST
 
@@ -96,21 +96,15 @@ npm run index-generated
 | Folder & File Names   | `kebab-case` | `user-data.ts`   |
 | Classes, Enums, Types | `PascalCase` | `UserType`       |
 
-### API Explain
 
-Based on swagger file, we will leverage openapi-typescript then extract to {pet}.d.ts file.
+### AI GENERATOR TEST CASES
 
-```Sample
-npx openapi-typescript https://petstore3.swagger.io/api/v3/openapi.json  -o src/core/api/types/pet-type.ts --immutable --root-types true --export-type
+Sample for api
+
 ```
-
-Ideally generated-api cli should auto run to validate api changes. this way help auto repo alway up-to-date with other services.
-{pet}.d.ts file help us easilly to validate request schema on test case
-
-Some other useful tools
-
-- Mock schema data @anatine/zod-mock
-- Generate client with @moznion/openapi-fetch-gen
+ following @api-test-generator, write test case for pet service
+```
+This one leverage ai to generate test case for api service.
 
 ### 🚀 CI/CD
 
