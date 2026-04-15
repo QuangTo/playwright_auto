@@ -17,23 +17,25 @@ I need you to create a Page Object class for `[PAGE_NAME]`.
 The Page Object is the **single source of truth** for the selectors and interactions of a specific page. It should hide the underlying HTML/CSS complexity from the test.
 
 **Instructions:**
+
 1.  **Location:** `src/core/ui/pages/[PageName]Page.ts`.
 2.  **Class Structure:**
-    *   Properties: `readonly page: Page;`
-    *   Properties: `readonly [elementName]: Locator;` (Define locators as properties).
-    *   Constructor: Initialize `page` and all `locators`.
+    - Properties: `readonly page: Page;`
+    - Properties: `readonly [elementName]: Locator;` (Define locators as properties).
+    - Constructor: Initialize `page` and all `locators`.
 3.  **Locator Strategy:**
-    *   Priority 1: `getByRole`, `getByText`, `getByLabel` (User-facing attributes).
-    *   Priority 2: `getByTestId` (if available).
-    *   Priority 3: CSS/XPath (Avoid unless necessary).
+    - Priority 1: `getByRole`, `getByText`, `getByLabel` (User-facing attributes).
+    - Priority 2: `getByTestId` (if available).
+    - Priority 3: CSS/XPath (Avoid unless necessary).
 4.  **Methods:**
-    *   Methods should represent **User Actions** (`login()`, `searchFor()`), not low-level interactions (`clickButton()`).
-    *   Complex sequences (e.g., "Fill form and submit") should be a single method.
+    - Methods should represent **User Actions** (`login()`, `searchFor()`), not low-level interactions (`clickButton()`).
+    - Complex sequences (e.g., "Fill form and submit") should be a single method.
 5.  **No Assertions (Soft Rule):**
-    *   Generally, avoid putting `expect()` inside the Page Object. Return the `Locator` or a value so the Test Spec can assert.
-    *   *Exception:* Methods like `waitForLoaded()` usually wait for a specific state.
+    - Generally, avoid putting `expect()` inside the Page Object. Return the `Locator` or a value so the Test Spec can assert.
+    - _Exception:_ Methods like `waitForLoaded()` usually wait for a specific state.
 
 **Template:**
+
 ```typescript
 import { Locator, Page } from '@playwright/test';
 

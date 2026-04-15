@@ -32,6 +32,7 @@ This agent helps generate services, factories, or types from OpenAPI specificati
 When generating code, the agent will:
 
 1. Run the appropriate code generation scripts:
+
    - `npm run generated-api-type` - For generating OpenAPI types
    - `npm run generated-service` - For generating service implementations
    - `npm run generated-factory` - For generating test data factories
