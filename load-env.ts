@@ -5,10 +5,10 @@ import fs from 'fs';
 export function loadEnvironment() {
   const env = process.env.NODE_ENV || 'dev';
   const envPath = resolve(`.env.${env}`);
-
-  if (fs.existsSync(envPath)) {
-    config({ path: envPath });
-  } else {
-    console.warn(`⚠️  Missing .env.${env}`);
-  }
+  // Temp disable .env
+  // if (fs.existsSync(envPath)) {
+  //   config({ path: envPath });
+  // } else {
+  //   console.warn(`⚠️  Missing .env.${env}`);
+  // }
 }

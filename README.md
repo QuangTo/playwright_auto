@@ -1,130 +1,116 @@
-# 🎭 PLAYWRIGHT FRAMEWORK 🎭
+# Playwright Testing Framework with AI Assistance
 
-- Scalable, rubost and maintainable testing framework
-- API, UI ,i18, axe
-- Focus on integration, regresstion test
+A robust end-to-end testing framework that combines Playwright's power with AI-assisted test generation, review, and self-healing capabilities.
 
-### 📁PROJECT STRUCTURE
+## 🚀 Key Features
 
-```
- |- external # External system interactions e.g. Database
- |- .antigravity # AI generator test cases
- |- src
- |- |- core #
- |- |- |- api #
- |- |- |- ui #
- |- |- |- shared # common utils, data
- |- |- |- scripts # define generator flow. can done manual or levarage by ai
- |- |- setups #
- |- tests # Here is the magic 🧙‍♂️
- |- |- ui
- |- |- api
- |- config # Project Configuration
-```
+- **AI-Powered Test Generation**: Automatically create API and UI tests following best practices
+- **Intelligent Code Review**: Get instant feedback on code quality and test compliance
+- **Self-Healing Tests**: Automatically detect and fix flaky tests
+- **Zero Configuration AI**: Runs locally with no API keys required
+- **Full Stack Testing**: API, UI, accessibility, and internationalization support
 
-### 🧩TECH STACK/LIB
+## 🛠️ Tech Stack
 
-- Playwright for API, UI, mobile simulator device testing
-- Appium for mobile testing (not yet)
-- Artillery (or k6) for load testing (not yet)
-- ESlint for pinpoint issues and guide you in rectifying potential problems TypeScript.
-- Prettier for fortmat coding
-- Dotnet env management
-- Secret for aws loading secret key
-- Typescript for type safe
-- Zod for schema validation
-- openapi-typescript for generator api type
-- Wiston for logging 
-- Faker for genarating test data
-- RenovateBot for auto update dependencies/lib
+- **Playwright** - Reliable end-to-end testing
+- **TypeScript** - Type-safe test code
+- **Zod** - Schema validation
+- **ESLint + Prettier** - Code quality
+- **OpenAPI Typescript** - Automatic API client generation
+- **Faker.js** - Realistic test data
 
-### 🏗️DESIGN PATTERN
+## 🤖 AI Agents Included
 
-- Page object model, page factory pattern for UI
-- Service api layer, builder data pattern
-- Fixture, custom fixture for local and ci
+This framework comes with specialized AI agents that understand your project's patterns:
 
-### 🧪RUN TEST
+| Agent                 | What It Does                             | How to Use                           |
+| --------------------- | ---------------------------------------- | ------------------------------------ |
+| `@api-agent`          | Generate, review, enhance API tests      | `/api-agent generate pet addPet`     |
+| `@ui-agent`           | Generate, review, enhance UI tests (POM) | `/ui-agent generate login loginPage` |
+| `@review-agent`       | Check code standards & test quality      | `/review-agent review src/`          |
+| `@self-healing-agent` | Detect flaky tests & add healing         | `/self-healing-agent analyze tests/` |
+| `@codegen-agent`      | Generate API services from OpenAPI       | `/codegen-agent generate pet`        |
 
-Install dependecies
+## 📁 Project Structure
 
 ```
-npm i
+src/
+├── core/
+│   ├── api/          # API services, types, factories
+│   ├── ui/           # Page objects, components, fixtures
+│   └── shared/       # Common utilities
+tests/
+├── api/              # API test specs
+└── ui/               # UI test specs
+.agent/               # AI agent instructions & best practices
 ```
 
-Run all test
+## 🚀 Getting Started
 
-```
-npm run test:all
-```
+1. **Install dependencies**
 
-Run with tag/ project
+   ```bash
+   npm ci
+   ```
 
-```
-npm run test:api
-```
+2. **Generate API code from OpenAPI**
 
-Run UI project
+   ```bash
+   npx opencode /codegen-agent generate pet
+   ```
 
-```
-npm run test:happy
-```
+3. **Create test skeletons with AI**
 
-Generate service type base on swagger file
+   ```bash
+   npx opencode /api-agent generate pet addPet
+   npx opencode /ui-agent generate login loginPage
+   ```
 
-```
-npm run generated-api
-```
+4. **Review & improve**
 
-Generate index file
+   ```bash
+   npx opencode /review-agent review src/
+   npx opencode /self-healing-agent analyze tests/
+   ```
 
-```
-npm run index-generated
-```
+5. **Run tests**
+   ```bash
+   npm run test:all
+   ```
 
-### 🧾CODE CONDUCT FLOW
+## 🔧 How AI Works Here
 
-1. Project code convention on tsconfig
-2. Use husky to run eslint before commit
-3. Prevent `.only` test
+The agents read your project's documentation in `.agent/` to understand:
 
-### 🧱CODE CONVENTIONS
+- Your 6-section API test structure
+- Page Object Model patterns
+- Factory-based test data
+- Custom fixtures and utilities
 
-| Usage                 | Convention   | Sample           |
-| --------------------- | ------------ | ---------------- |
-| Functions, Variables  | `camelCase`  | `generateData()` |
-| Folder & File Names   | `kebab-case` | `user-data.ts`   |
-| Classes, Enums, Types | `PascalCase` | `UserType`       |
+They then apply these patterns to generate or improve code that matches your existing style—no generic templates, just code that fits seamlessly into your project.
 
+Every AI-generated file starts with:
 
-### AI GENERATOR TEST CASES
-
-Sample for api
-
-```
- following @api-test-generator, write test case for pet service
-```
-This one leverage ai to generate test case for api service.
-
-### 🚀 CI/CD
-
-- Parallel test execution use shard test maxtrix
-- Blod report (shard and merge report)
-- Cross-brower
-- Easy setup, test with pipline (s3,azure)
-
-### 📊 RERPORTER
-
-Default html
-
-```
-npx playwright show-report
+```typescript
+// This test case is generated by AI
 ```
 
-Docker report-portal
+## 💡 Why This Approach
 
-1. Run docker-compose -p reportportal up -d --force-recreate
-2. Open localhost port :8080
-3. Login with credential : superadmin - erebus
-4. Update RP info on src/setup/report/RPconfig.ts (apiKey,endpoint)
-5. Update reporter on playwright.config.ts file
+- **Consistency**: Tests follow your established patterns
+- **Productivity**: Skip boilerplate, focus on edge cases
+- **Quality**: Built-in review catches issues early
+- **Reliability**: Self-healing reduces test maintenance
+- **Transparency**: Clear distinction between AI and human code
+
+## 🔄 CI/CD Ready
+
+The included GitHub Actions workflow runs the same AI-powered quality checks on every PR, ensuring your standards stay high with zero manual effort.
+
+---
+
+**Ready to test smarter?** Generate your first AI-assisted test:
+
+```bash
+npx opencode /api-agent generate pet addPet
+```
